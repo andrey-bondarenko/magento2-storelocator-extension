@@ -30,8 +30,6 @@ class BackButton extends GenericButton implements ButtonProviderInterface
     }
 
     /**
-     * Get URL for back (reset) button
-     *
      * @return string
      */
     protected function _getBackUrl()

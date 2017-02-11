@@ -30,8 +30,6 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
     }
 
     /**
-     * Get URL for back (reset) button
-     *
      * @return string
      */
     protected function _getSaveUrl()

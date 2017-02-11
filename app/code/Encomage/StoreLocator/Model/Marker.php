@@ -71,7 +71,6 @@ class Marker extends \Magento\Framework\Model\AbstractModel
         if (!isset($dataFromRequest['longitude']) || empty($dataFromRequest['longitude'])) {
             $errors[] = __('Longitude is required field.');
         }
-
         if (!isset($dataFromRequest['store_id']) || empty($dataFromRequest['store_id'])) {
             $errors[] = __('Store Views is required field.');
         }
