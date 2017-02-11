@@ -7,13 +7,11 @@
 
 namespace Encomage\StoreLocator\Model\Config\Source;
 
-use Magento\Framework\Option\ArrayInterface;
-
 /**
  * Class FrontendColumn
  * @package Encomage\StoreLocator\Model\Config\Source
  */
-class FrontendColumn implements ArrayInterface
+class FrontendColumn implements \Magento\Framework\Option\ArrayInterface
 {
     const SHOW_ON_LEFT_COLUMNS = 'left';
     const SHOW_ON_RIGHT_COLUMNS = 'right';

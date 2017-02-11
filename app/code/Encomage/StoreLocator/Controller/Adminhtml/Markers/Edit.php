@@ -5,16 +5,18 @@
  * @mail info@encomage.com
  */
 
-namespace Encomage\StoreLocator\Controller\Adminhtml\Index;
-
+namespace Encomage\StoreLocator\Controller\Adminhtml\Markers;
 
 /**
- * Class Index
- * @package Ewave\ProductPriority\Controller\Priority
+ * Class Edit
+ * @package Encomage\StoreLocator\Controller\Adminhtml\Markers
  */
-class Index extends \Magento\Backend\App\Action
+class Edit extends \Magento\Backend\App\Action
 {
 
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
     protected $_resultPageFactory;
 
     /**
@@ -32,10 +34,14 @@ class Index extends \Magento\Backend\App\Action
     }
 
 
+    /**
+     * @return \Magento\Framework\View\Result\Page
+     */
     public function execute()
     {
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Encomage_StoreLocator::markers');
+        $resultPage->getConfig()->getTitle()->prepend(__('Edit store marker'));
         return $resultPage;
     }
 }

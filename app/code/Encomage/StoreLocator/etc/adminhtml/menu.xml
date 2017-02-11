@@ -6,6 +6,6 @@
              module="Encomage_StoreLocator"
              sortOrder="80"
              resource="Encomage_StoreLocator::markers"
-             action="storelocator/index/index"/>
+             action="storelocator/markers/grid"/>
     </menu>
 </config>

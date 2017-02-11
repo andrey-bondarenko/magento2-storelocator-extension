@@ -7,13 +7,11 @@
 
 namespace Encomage\StoreLocator\Model\Resource\Marker;
 
-use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-
 /**
  * Class Collection
  * @package Encomage\StoreLocator\Model\Resource\Marker
  */
-class Collection extends AbstractCollection
+class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
 
     /**

@@ -7,13 +7,11 @@
 
 namespace Encomage\StoreLocator\Model\Config\Source;
 
-use Magento\Framework\Option\ArrayInterface;
-
 /**
  * Class Markers
  * @package Encomage\StoreLocator\Model\Config\Source
  */
-class Markers implements ArrayInterface
+class Markers implements \Magento\Framework\Option\ArrayInterface
 {
 
     /**

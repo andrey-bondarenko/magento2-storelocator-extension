@@ -7,13 +7,11 @@
 
 namespace Encomage\StoreLocator\Model\Resource;
 
-use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-
 /**
  * Class Marker
  * @package Encomage\StoreLocator\Model\Resource
  */
-class Marker extends AbstractDb
+class Marker extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     /**
      * Class construct
