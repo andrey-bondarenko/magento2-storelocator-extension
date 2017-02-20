@@ -22,7 +22,7 @@ class Edit extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param \Encomage\StoreLocator\Model\Resource\Marker\CollectionFactory $markersCollectionFactory
+     * @param \Encomage\StoreLocator\Model\ResourceModel\Marker\CollectionFactory $markersCollectionFactory
      * @param array $meta
      * @param array $data
      */
@@ -30,7 +30,7 @@ class Edit extends \Magento\Ui\DataProvider\AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        \Encomage\StoreLocator\Model\Resource\Marker\CollectionFactory $markersCollectionFactory,
+        \Encomage\StoreLocator\Model\ResourceModel\Marker\CollectionFactory $markersCollectionFactory,
         array $meta = [],
         array $data = []
     )

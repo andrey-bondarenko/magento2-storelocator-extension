@@ -5,11 +5,11 @@
  * @mail info@encomage.com
  */
 
-namespace Encomage\StoreLocator\Model\Resource\Marker;
+namespace Encomage\StoreLocator\Model\ResourceModel\Marker;
 
 /**
  * Class Collection
- * @package Encomage\StoreLocator\Model\Resource\Marker
+ * @package Encomage\StoreLocator\Model\ResourceModel\Marker
  */
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
@@ -21,7 +21,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     {
         $this->_init(
             'Encomage\StoreLocator\Model\Marker',
-            'Encomage\StoreLocator\Model\Resource\Marker'
+            'Encomage\StoreLocator\Model\ResourceModel\Marker'
         );
     }
 }

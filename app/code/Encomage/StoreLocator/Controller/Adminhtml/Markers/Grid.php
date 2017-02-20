@@ -38,7 +38,7 @@ class Grid extends \Magento\Backend\App\Action
      * @return \Magento\Framework\View\Result\Page
      */
     public function execute()
-    {
+    {die();
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Encomage_StoreLocator::markers');
         return $resultPage;

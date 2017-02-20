@@ -1,46 +1,48 @@
 <?php
 namespace Encomage\StoreLocator\Ui\Component\DataProvider;
 
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\Search\SearchCriteriaBuilder;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\View\Element\UiComponent\DataProvider\Reporting;
+
 class Grid extends \Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
 {
+
+    /**
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
+     * @param Reporting $reporting
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param RequestInterface $request
+     * @param FilterBuilder $filterBuilder
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
-        \Magento\Framework\Api\Search\ReportingInterface $reporting,
-        \Magento\Framework\Api\Search\SearchCriteriaBuilder $searchCriteriaBuilder,
-        \Magento\Framework\App\RequestInterface $request,
-        \Magento\Framework\Api\FilterBuilder $filterBuilder,
-        \Magento\Framework\UrlInterface $url
+        $primaryFieldName,
+        $requestFieldName,
+        Reporting $reporting,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        RequestInterface $request,
+        FilterBuilder $filterBuilder,
+        array $meta = [],
+        array $data = []
     )
     {
-        $primaryFieldName = 'id';
-        $requestFieldName = 'id';
-        $meta = [];
-        $updateUrl = $url->getRouteUrl('mui/index/render');
-        $data = [
-            'config' => [
-                'component' => 'Magento_Ui/js/grid/provider',
-                'update_url' => $updateUrl
-            ]
-        ];
-        
-        //TODO::TEST
-        
-        parent::__construct($name, $primaryFieldName, $requestFieldName, $reporting, $searchCriteriaBuilder, $request,
-            $filterBuilder, $meta, $data);
-    }
-
-    public function getData()
-    {
-        //TODO::TEST
-        $result = [
-            'items' => [
-                ['code2' => 'AU', 'code3' => 'AUS', 'code_num' => '036'],
-                ['code2' => 'AT', 'code3' => 'AUT', 'code_num' => '040'],
-                ['code2' => 'AZ', 'code3' => 'AZE', 'code_num' => '031']
-            ],
-            'totalRecords' => 3
-        ];
-        return $result;
+        parent::__construct(
+            $name,
+            $primaryFieldName,
+            $requestFieldName,
+            $reporting,
+            $searchCriteriaBuilder,
+            $request,
+            $filterBuilder,
+            $meta,
+            $data
+        );
     }
 
 }

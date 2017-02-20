@@ -5,11 +5,11 @@
  * @mail info@encomage.com
  */
 
-namespace Encomage\StoreLocator\Model\Resource;
+namespace Encomage\StoreLocator\Model\ResourceModel;
 
 /**
  * Class Marker
- * @package Encomage\StoreLocator\Model\Resource
+ * @package Encomage\StoreLocator\Model\ResourceModel
  */
 class Marker extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {

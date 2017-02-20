@@ -18,7 +18,7 @@ class Marker extends \Magento\Framework\Model\AbstractModel
      */
     protected function _construct()
     {
-        $this->_init('Encomage\StoreLocator\Model\Resource\Marker');
+        $this->_init('Encomage\StoreLocator\Model\ResourceModel\Marker');
         $this->_eventPrefix = 'storelocator_markers';
     }
 
