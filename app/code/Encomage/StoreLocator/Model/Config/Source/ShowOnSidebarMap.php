@@ -1,6 +1,5 @@
 <?php
 /**
- * @package com.encomage.storelocator.m2
  * @author Andrey Bondarenko
  * @link http://encomage.com
  * @mail info@encomage.com
@@ -8,13 +7,11 @@
 
 namespace Encomage\StoreLocator\Model\Config\Source;
 
-use Magento\Framework\Option\ArrayInterface;
-
 /**
  * Class ShowOnSidebarMap
  * @package Encomage\StoreLocator\Model\Config\Source
  */
-class ShowOnSidebarMap implements ArrayInterface
+class ShowOnSidebarMap implements \Magento\Framework\Option\ArrayInterface
 {
 
     const SIDEBAR_MAP_MARKER_RANDOM = 'random';

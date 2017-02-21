@@ -1,20 +1,17 @@
 <?php
 /**
- * @package com.encomage.storelocator.m2
  * @author Andrey Bondarenko
  * @link http://encomage.com
  * @mail info@encomage.com
  */
 
-namespace Encomage\StoreLocator\Model\Resource;
-
-use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+namespace Encomage\StoreLocator\Model\ResourceModel;
 
 /**
  * Class Marker
- * @package Encomage\StoreLocator\Model\Resource
+ * @package Encomage\StoreLocator\Model\ResourceModel
  */
-class Marker extends AbstractDb
+class Marker extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     /**
      * Class construct

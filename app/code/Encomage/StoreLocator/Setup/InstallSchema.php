@@ -1,7 +1,6 @@
 <?php
 
 /**
- * @package com.encomage.storelocator.m2
  * @author Andrey Bondarenko
  * @link http://encomage.com
  * @mail info@encomage.com
