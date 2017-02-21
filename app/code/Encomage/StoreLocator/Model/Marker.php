@@ -35,6 +35,16 @@ class Marker extends \Magento\Framework\Model\AbstractModel
 
     /**
      * @return $this
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function massMarkersDelete()
+    {
+        $this->_getResource()->markersDelete($this);
+        return $this;
+    }
+
+    /**
+     * @return $this
      * @throws \Exception
      * @throws \Magento\Framework\Exception\LocalizedException
      */

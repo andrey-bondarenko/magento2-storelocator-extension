@@ -20,7 +20,7 @@ class Grid extends \Magento\Backend\App\Action
     protected $_resultPageFactory;
 
     /**
-     * Index constructor.
+     * Grid constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
@@ -38,9 +38,7 @@ class Grid extends \Magento\Backend\App\Action
      * @return \Magento\Framework\View\Result\Page
      */
     public function execute()
-    {die();
-        $resultPage = $this->_resultPageFactory->create();
-        $resultPage->setActiveMenu('Encomage_StoreLocator::markers');
-        return $resultPage;
+    {
+        return $this->_resultPageFactory->create();
     }
 }
