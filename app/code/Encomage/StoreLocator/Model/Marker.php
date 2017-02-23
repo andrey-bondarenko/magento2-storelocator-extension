@@ -50,7 +50,7 @@ class Marker extends \Magento\Framework\Model\AbstractModel
      */
     public function deleteMarker()
     {
-        $this->_getResource()->delete($this);
+        $this->_getResource()->markersDelete($this);
         return $this;
     }
 

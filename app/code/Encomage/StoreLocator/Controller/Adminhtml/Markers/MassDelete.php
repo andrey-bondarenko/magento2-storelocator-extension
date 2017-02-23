@@ -8,7 +8,7 @@
 namespace Encomage\StoreLocator\Controller\Adminhtml\Markers;
 
 /**
- * Class Delete
+ * Class MassDelete
  * @package Encomage\StoreLocator\Controller\Adminhtml\Markers
  */
 class MassDelete extends \Magento\Backend\App\Action
@@ -47,13 +47,13 @@ class MassDelete extends \Magento\Backend\App\Action
         $markers = $this->getRequest()->getParam('selected', []);
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-
         if (!empty($markers)) {
             try {
-                //TODO:: Implement
+                $this->_markerObject->setIds($markers);
+                $this->_markerObject->deleteMarker();
                 $this->messageManager->addSuccessMessage(__('Store marker\'s was deleted'));
             } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage($e->getMessage(), __('Something went wrong.'));
+                $this->messageManager->addErrorMessage(__('Something went wrong.'));
             }
         }
         return $resultRedirect->setPath('*/*/grid');
