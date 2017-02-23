@@ -8,10 +8,10 @@
 namespace Encomage\StoreLocator\Controller\Adminhtml\Markers;
 
 /**
- * Class Delete
+ * Class MassDelete
  * @package Encomage\StoreLocator\Controller\Adminhtml\Markers
  */
-class Delete extends \Magento\Backend\App\Action
+class MassDelete extends \Magento\Backend\App\Action
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
@@ -23,7 +23,7 @@ class Delete extends \Magento\Backend\App\Action
     protected $_markerObject;
 
     /**
-     * Delete constructor.
+     * MassDelete constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      * @param \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
@@ -44,15 +44,16 @@ class Delete extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $markerId = (int)$this->getRequest()->getParam('id');
+        $markers = $this->getRequest()->getParam('selected', []);
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        if ($markerId) {
+        if (!empty($markers)) {
             try {
-                $this->_markerObject->setEntityId($markerId)->deleteMarker();
-                $this->messageManager->addSuccessMessage(__('Store marker has been deleted'));
+                $this->_markerObject->setIds($markers);
+                $this->_markerObject->deleteMarker();
+                $this->messageManager->addSuccessMessage(__('Store marker\'s was deleted'));
             } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage($e->getMessage(), __('Something went wrong.'));
+                $this->messageManager->addErrorMessage(__('Something went wrong.'));
             }
         }
         return $resultRedirect->setPath('*/*/grid');

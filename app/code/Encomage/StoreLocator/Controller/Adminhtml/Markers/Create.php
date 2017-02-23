@@ -20,7 +20,7 @@ class Create extends \Magento\Backend\App\Action
     protected $_resultPageFactory;
 
     /**
-     * Index constructor.
+     * Create constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
@@ -38,9 +38,6 @@ class Create extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $resultPage = $this->_resultPageFactory->create();
-        $resultPage->setActiveMenu('Encomage_StoreLocator::markers');
-        $resultPage->getConfig()->getTitle()->prepend(__('Create store marker'));
-        return $resultPage;
+        return $this->_resultPageFactory->create();
     }
 }

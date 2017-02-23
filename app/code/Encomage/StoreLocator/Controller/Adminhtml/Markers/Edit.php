@@ -20,7 +20,7 @@ class Edit extends \Magento\Backend\App\Action
     protected $_resultPageFactory;
 
     /**
-     * Index constructor.
+     * Edit constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
@@ -39,9 +39,6 @@ class Edit extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $resultPage = $this->_resultPageFactory->create();
-        $resultPage->setActiveMenu('Encomage_StoreLocator::markers');
-        $resultPage->getConfig()->getTitle()->prepend(__('Edit store marker'));
-        return $resultPage;
+        return $this->_resultPageFactory->create();
     }
 }

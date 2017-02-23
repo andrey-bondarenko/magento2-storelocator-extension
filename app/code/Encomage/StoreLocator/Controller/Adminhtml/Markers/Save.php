@@ -65,11 +65,11 @@ class Save extends \Magento\Backend\App\Action
         $this->_markerObject
             ->setData(
                 [
-                    'name' => $requestParams['name'],
-                    'latitude' => $requestParams['latitude'],
+                    'name'      => $requestParams['name'],
+                    'latitude'  => $requestParams['latitude'],
                     'longitude' => $requestParams['longitude'],
-                    'store_id' => implode(',', $requestParams['store_id']),
-                    'comment' => $this->getRequest()->getParam('comment', null)
+                    'store_id'  => implode(',', $requestParams['store_id']),
+                    'comment'   => $this->getRequest()->getParam('comment', null)
                 ]
             );
         try {
