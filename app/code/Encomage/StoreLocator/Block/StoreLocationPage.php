@@ -13,8 +13,5 @@ namespace Encomage\StoreLocator\Block;
  */
 class StoreLocationPage extends \Encomage\StoreLocator\Block\MapAbstract
 {
-    public function getMarkersList()
-    {
-        //TODO: Implement
-    }
+    
 }
