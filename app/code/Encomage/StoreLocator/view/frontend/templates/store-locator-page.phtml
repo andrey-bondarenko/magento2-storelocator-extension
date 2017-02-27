@@ -10,7 +10,9 @@ $markers = $block->getCollection();
 ?>
 <?php if ($markers->getSize()): ?>
     <?php foreach ($markers as $marker): ?>
-        <div><?php echo $marker->getName(); ?></div>
+        <div class="js-show-marker" data-marker-id="<?php echo (int)$marker->getId() ?>">
+            <?php echo $block->escapeHtml($marker->getName()); ?>
+        </div>
     <?php endforeach; ?>
 <?php endif; ?>
 <div id="<?php echo $block->escapeHtml($block->getMapContainerId()); ?>" style="      height: 400px;
@@ -21,10 +23,9 @@ $markers = $block->getCollection();
     echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode(
         [
             '*' => [
-                'Encomage_StoreLocator/js/locator' => $block->getDefaultParams()
+                'Encomage_StoreLocator/js/locator' => $block->getParams()
             ],
         ]
     );
     ?>
-
 </script>

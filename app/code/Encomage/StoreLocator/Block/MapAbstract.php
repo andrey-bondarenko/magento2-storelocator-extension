@@ -71,23 +71,26 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
     /**
      * @return array
      */
-    public function getDefaultParams()
+    public function getParams()
     {
         return [
             'selector' => $this->getMapContainerId(),
-            'defLat' => $this->_scopeConfig->getValue(
+            'defaultLat' => $this->_scopeConfig->getValue(
                 \Encomage\StoreLocator\Helper\Config::DEFAULT_COORDINATES_LAT_PATH
             ),
-            'defLng' => $this->_scopeConfig->getValue(
+            'defaultLng' => $this->_scopeConfig->getValue(
                 \Encomage\StoreLocator\Helper\Config::DEFAULT_COORDINATES_LNG_PATH
             ),
-            'defZoom' => $this->_scopeConfig->getValue(
+            'defaultZoom' => $this->_scopeConfig->getValue(
                 \Encomage\StoreLocator\Helper\Config::DEFAULT_ZOOM_PATH
+            ),
+            'selectedMarkerZoom' => $this->_scopeConfig->getValue(
+                \Encomage\StoreLocator\Helper\Config::SELECTED_MARKER_ZOOM_PATH
             ),
             'markers' => $this->_getStoreMarkers()
         ];
     }
-    
+
 
     /**
      * @return array
@@ -97,7 +100,7 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         $collection = $this->getCollection();
         $storeMarkers = [];
         foreach ($collection as $item) {
-            $storeMarkers[] = $item->getData();
+            $storeMarkers[$item->getId()] = $item->getData();
         }
         return $storeMarkers;
     }

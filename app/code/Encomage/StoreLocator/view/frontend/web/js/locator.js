@@ -5,34 +5,49 @@ define([
     'use strict';
     $.widget('encomage.storeLocator', {
         options: {
+            markers: '',
             selector: '',
-            defLng: '',
-            defLat: '',
-            defZoom: '',
-            markers: ''
+            defaultLng: '',
+            defaultLat: '',
+            defaultZoom: '',
+            selectedMarkerZoom: ''
         },
         map: null,
-        bounds: null,
         _create: function () {
             if (this.options.selector) {
-                var map = new google.maps.Map(document.getElementById(this.options.selector), {
-                    zoom: parseInt(this.options.defZoom),
-                    center: {
-                        lat: parseFloat(this.options.defLat),
-                        lng: parseFloat(this.options.defLng)
-                    }
-                });
-                for (var i = 0; i < this.options.markers.length; i++) {
-                    new google.maps.Marker({
-                        position: {
-                            lat: parseFloat(this.options.markers[i].latitude),
-                            lng: parseFloat(this.options.markers[i].longitude)
-                        },
-                        map: map
-                    });
-                }
+                var _this = this;
+                this._event();
+                this._mapInit();
+                this._markerPlacement();
             }
+        },
+        _mapInit: function () {
+            this.map = new google.maps.Map(document.getElementById(this.options.selector), {
+                zoom: parseInt(this.options.defaultZoom),
+                center: this._prepareCoordinates(this.options.defaultLat, this.options.defaultLng)
+            });
+        },
+        _markerPlacement: function () {
+            var _this = this;
+            $.each(this.options.markers, function (i, v) {
+                new google.maps.Marker({
+                    position: _this._prepareCoordinates(v.latitude, v.longitude),
+                    map: _this.map
+                });
+            });
+        },
+        _event: function () {
+            var _this = this;
+            $('.js-show-marker').on('click', function () {
+                var marker = _this.options.markers[$(this).data('markerId')];
+                _this.map.setZoom(parseInt(_this.options.selectedMarkerZoom));
+                _this.map.setCenter(_this._prepareCoordinates(marker.latitude, marker.longitude));
+            });
+        },
+        _prepareCoordinates(lat, lng){
+            return new google.maps.LatLng(parseFloat(lat), parseFloat(lng))
         }
+
     });
     return $.encomage.storeLocator;
 });
