@@ -5,12 +5,12 @@ define([
     'use strict';
     $.widget('encomage.storeLocator', {
         options: {
-            markers: '',
             selector: '',
             defaultLng: '',
             defaultLat: '',
             defaultZoom: '',
-            selectedMarkerZoom: ''
+            selectedMarkerZoom: '',
+            markers: ''
         },
         map: null,
         _create: function () {
