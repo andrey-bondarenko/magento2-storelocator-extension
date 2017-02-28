@@ -4,9 +4,6 @@
         <title>Store Locator</title>
     </head>
     <body>
-        <referenceBlock name="head.additional">
-            <block class="Encomage\StoreLocator\Block\Script" name="google.maps.api" template="Encomage_StoreLocator::js/script.phtml" />
-        </referenceBlock>
         <referenceContainer name="content">
             <block class="Encomage\StoreLocator\Block\StoreLocationPage" name="store.locator.page" template="Encomage_StoreLocator::store-locator-page.phtml" />
         </referenceContainer>

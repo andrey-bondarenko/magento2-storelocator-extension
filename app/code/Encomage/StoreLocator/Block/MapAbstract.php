@@ -47,6 +47,7 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
         $this->_configHelper = $config;
         $this->_markersCollection = $markersCollectionFactory->create();
+        $this->_addGoogleMapApiScript();
     }
 
     /**
@@ -103,5 +104,21 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
             $storeMarkers[$item->getId()] = $item->getData();
         }
         return $storeMarkers;
+    }
+
+    /**
+     * @return $this
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    protected function _addGoogleMapApiScript()
+    {
+        if (!$this->getLayout()->isBlock('google.maps.api')) {
+            $this->getLayout()->addBlock(
+                'Encomage\StoreLocator\Block\Google\MapApi',
+                'google.maps.api',
+                'head.additional'
+            );
+        }
+        return $this;
     }
 }
