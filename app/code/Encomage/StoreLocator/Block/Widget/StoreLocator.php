@@ -19,6 +19,11 @@ class StoreLocator extends MapAbstract implements BlockInterface
     const MAP_CONTAINER_ID = 'map-widget';
 
     /**
+     * @var \Encomage\StoreLocator\Model\ResourceModel\Marker\Collection
+     */
+    protected $_collection;
+
+    /**
      * Class construct
      */
     protected function _construct()

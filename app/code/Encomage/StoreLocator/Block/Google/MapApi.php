@@ -13,7 +13,11 @@ namespace Encomage\StoreLocator\Block\Google;
  */
 class MapApi extends \Magento\Framework\View\Element\Template
 {
+    /**
+     * @var string
+     */
     protected $_template = 'Encomage_StoreLocator::js/script.phtml';
+    
     /**
      * @return mixed
      */

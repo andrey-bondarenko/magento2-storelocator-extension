@@ -26,11 +26,6 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
     protected $_configHelper;
 
     /**
-     * @var \Encomage\StoreLocator\Model\ResourceModel\Marker\Collection
-     */
-    protected $_collection;
-
-    /**
      * MapAbstract constructor.
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Encomage\StoreLocator\Model\ResourceModel\Marker\CollectionFactory $markersCollectionFactory
@@ -50,15 +45,13 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         $this->_addGoogleMapApiScript();
     }
 
+
     /**
      * @return $this|\Encomage\StoreLocator\Model\ResourceModel\Marker\Collection
      */
     public function getCollection()
     {
-        if (!$this->_collection) {
-            $this->_collection = $this->_markersCollection->getDataByStore();
-        }
-        return $this->_collection;
+        return $this->_markersCollection;
     }
 
     /**
@@ -91,7 +84,6 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
             'markers' => $this->_getStoreMarkers()
         ];
     }
-
 
     /**
      * @return array
