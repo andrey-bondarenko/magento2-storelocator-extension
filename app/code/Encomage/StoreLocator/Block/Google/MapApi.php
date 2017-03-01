@@ -5,14 +5,19 @@
  * @mail info@encomage.com
  */
 
-namespace Encomage\StoreLocator\Block;
+namespace Encomage\StoreLocator\Block\Google;
 
 /**
  * Class MapAbstract
  * @package Encomage\StoreLocator\Block
  */
-class Script extends \Magento\Framework\View\Element\Template
+class MapApi extends \Magento\Framework\View\Element\Template
 {
+    /**
+     * @var string
+     */
+    protected $_template = 'Encomage_StoreLocator::js/script.phtml';
+    
     /**
      * @return mixed
      */
