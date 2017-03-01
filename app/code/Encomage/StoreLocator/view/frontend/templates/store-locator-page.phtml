@@ -1,0 +1,31 @@
+<?php
+/**
+ * @author Andrey Bondarenko
+ * @link http://encomage.com
+ * @mail info@encomage.com
+ */
+
+/** @var \Encomage\StoreLocator\Block\StoreLocationPage $block */
+$markers = $block->getCollection();
+?>
+<?php if ($markers->getSize()): ?>
+    <?php foreach ($markers as $marker): ?>
+        <div class="js-show-marker" data-marker-id="<?php echo (int)$marker->getId() ?>">
+            <?php echo $block->escapeHtml($marker->getName()); ?>
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>
+<div id="<?php echo $block->escapeHtml($block->getMapContainerId()); ?>" style="      height: 400px;
+        width: 100%;"></div>
+<script type="text/x-magento-init">
+  <?php
+    /* @escapeNotVerified */
+    echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode(
+        [
+            '*' => [
+                'Encomage_StoreLocator/js/locator' => $block->getParams()
+            ],
+        ]
+    );
+    ?>
+</script>

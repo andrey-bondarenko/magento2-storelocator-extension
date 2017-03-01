@@ -10,7 +10,6 @@ namespace Encomage\StoreLocator\Model\ResourceModel\Marker\Grid;
 use Encomage\StoreLocator\Model\ResourceModel\Marker\Collection as MarkerCollection;
 use Magento\Framework\Api\Search\SearchResultInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class Collection extends MarkerCollection implements SearchResultInterface
 {
@@ -25,29 +24,33 @@ class Collection extends MarkerCollection implements SearchResultInterface
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy
      * @param \Magento\Framework\Event\ManagerInterface $eventManager
-     * @param \Magento\Framework\DB\Adapter\AdapterInterface $mainTable
-     * @param AbstractDb $eventPrefix
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Encomage\StoreLocator\Helper\Config $config
+     * @param \Magento\Store\Model\StoreManagerInterface $mainTable
+     * @param \Encomage\StoreLocator\Helper\Config $eventPrefix
      * @param $eventObject
      * @param $resourceModel
      * @param string $model
      * @param null $connection
-     * @param AbstractDb|null $resource
+     * @param \Magento\Framework\Model\ResourceModel\Db\AbstractDb|null $resource
      */
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
         \Magento\Framework\Event\ManagerInterface $eventManager,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Encomage\StoreLocator\Helper\Config $config,
         $mainTable,
         $eventPrefix,
         $eventObject,
         $resourceModel,
         $model = 'Magento\Framework\View\Element\UiComponent\DataProvider\Document',
         $connection = null,
-        AbstractDb $resource = null
+        \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
     )
     {
-        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
+        parent::__construct($storeManager, $config, $entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
         $this->_eventPrefix = $eventPrefix;
         $this->_eventObject = $eventObject;
         $this->_init($model, $resourceModel);

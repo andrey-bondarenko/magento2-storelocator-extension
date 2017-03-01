@@ -1,0 +1,11 @@
+<?php
+/**
+ * @author Andrey Bondarenko
+ * @link http://encomage.com
+ * @mail info@encomage.com
+ */
+
+/** @var \Encomage\StoreLocator\Block\Script $block */
+?>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=<?php echo $block->escapeHtml($block->getApiVersion()) ?>&key=<?php echo $block->escapeHtml($block->getApiKey());?>"></script>
