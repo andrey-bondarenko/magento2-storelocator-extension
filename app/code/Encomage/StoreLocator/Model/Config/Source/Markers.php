@@ -14,6 +14,8 @@ namespace Encomage\StoreLocator\Model\Config\Source;
 class Markers implements \Magento\Framework\Option\ArrayInterface
 {
 
+    const ALL_STORE_VIEWS = '0';
+
     /**
      * @var \Encomage\StoreLocator\Model\ResourceModel\Marker\Collection
      */
@@ -27,6 +29,16 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
      * @var \Magento\Framework\Registry
      */
     protected $_coreRegistry;
+
+    /**
+     * @var
+     */
+    protected $_storeIds;
+
+    /**
+     * @var bool
+     */
+    protected $_checkChosenInWidget = false;
 
     /**
      * @var array
@@ -62,8 +74,7 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         if (!$this->_options) {
-            $widget = $this->_getCurrentWidget();
-            $stores = $widget ? $widget->getStoreIds() : $this->_systemStore->getStoreCollection();
+            $stores = $this->_getStoresIds();
             foreach ($stores as $store) {
                 if (!$store instanceof \Magento\Store\Model\Store) {
                     $store = $this->_systemStore->getStoreData($store);
@@ -81,19 +92,65 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
     }
 
     /**
+     * @param array $storeIds
+     * @return $this
+     */
+    public function setStoresIds(array $storeIds)
+    {
+        $this->_storeIds = $storeIds;
+        return $this;
+    }
+
+    /**
+     * @param bool $flag
+     * @return $this
+     */
+    public function setCheckChosenInWidget($flag = false)
+    {
+        if (!$this->_getCurrentWidget()) {
+            $flag = false;
+        }
+        $this->_checkChosenInWidget = $flag;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    protected function _getStoresIds()
+    {
+        if (!$this->_storeIds) {
+            $widget = $this->_getCurrentWidget();
+            if (!$widget) {
+                return [];
+            }
+            return $widget->getStoreIds();
+        }
+        if (in_array(self::ALL_STORE_VIEWS, $this->_storeIds)) {
+            return $this->_systemStore->getStoreCollection();
+        }
+        return $this->_storeIds;
+    }
+
+    /**
      * @param null $markerId
      * @return null
      */
     protected function _getMarkersByStore($markerId = null)
     {
         if (!$this->_markersByStore) {
+            $widgetMarkers = ($this->_checkChosenInWidget) ? $this->_getWidgetMarkers() : [];
             foreach ($this->_markersCollection as $marker) {
                 $markerStores = $marker->getStoreIds();
                 foreach ($markerStores as $store) {
-                    $this->_markersByStore[$store][] = [
+                    $markerOptions = [
                         'label' => __($marker->getName()),
                         'value' => $marker->getId()
                     ];
+                    if ($this->_checkChosenInWidget && in_array($marker->getId(), $widgetMarkers)) {
+                        $markerOptions['selected'] = true;
+                    }
+                    $this->_markersByStore[$store][] = $markerOptions;
                 }
             }
         }
@@ -101,6 +158,19 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
             return isset($this->_markersByStore[$markerId]) ? $this->_markersByStore[$markerId] : null;
         }
         return $this->_markersByStore;
+    }
+
+    /**
+     * @return array
+     */
+    protected function _getWidgetMarkers()
+    {
+        $widget = $this->_getCurrentWidget();
+        if (!$widget) {
+            return [];
+        }
+        $params = $widget->getWidgetParameters();
+        return (isset($params['markers'])) ? $params['markers'] : [];
     }
 
     /**

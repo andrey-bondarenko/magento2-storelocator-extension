@@ -5,8 +5,9 @@
         <label translate="true">Store Locator</label>
         <description translate="true">Google Map Store Locator</description>
         <parameters>
-            <parameter xsi:type="multiselect" name="markers" visible="true" source_model="Encomage\StoreLocator\Model\Config\Source\Markers">
+            <parameter xsi:type="multiselect" name="markers" visible="true" required="true" source_model="Encomage\StoreLocator\Model\Config\Source\Markers">
                 <label translate="true">Available Markers</label>
+                <description translate="true">First you should select 'Assign to Store Views'</description>
             </parameter>
         </parameters>
     </widget>

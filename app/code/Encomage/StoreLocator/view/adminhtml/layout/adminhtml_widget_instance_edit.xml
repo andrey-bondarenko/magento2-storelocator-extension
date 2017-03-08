@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="js">
-            <block class="Magento\Backend\Block\Template" name="init_storelocator_widget_dependency"
+            <block class="Encomage\StoreLocator\Block\Adminhtml\Widget\Script" name="init_storelocator_widget_dependency"
                    template="Encomage_StoreLocator::script.phtml"/>
         </referenceContainer>
     </body>
