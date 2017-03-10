@@ -42,14 +42,33 @@ class Script extends \Magento\Backend\Block\Template
     public function getParams()
     {
         return [
-            'ajaxUrl'       => $this->getUrl(self::MARKERS_AJAX_URL),
-            'widgetId'      => $this->_getCurrentWidget() ? (int)$this->_getCurrentWidget()->getInstanceId() : null,
-            'widgetCode'    => $this->_getCurrentWidget() ? $this->_getCurrentWidget()->getInstanceCode() : null,
+            'ajaxUrl'               => $this->getUrl(self::MARKERS_AJAX_URL),
+            'widgetId'              => $this->_getCurrentWidget()->getInstanceId(),
+            'widgetCode'            => $this->_getCurrentWidget()->getInstanceCode(),
+            'centerMarkerLabel'     => $this->_getLabelForCenterMarkerSelect(),
+            'selectedCenterMarker'  => $this->_getSelectedCenterMarker()
         ];
     }
 
     /**
-     * @return null | \Magento\Widget\Model\Widget\Instance
+     * @return mixed
+     */
+    protected function _getLabelForCenterMarkerSelect()
+    {
+        return __(\Encomage\StoreLocator\Model\Config\Source\CenterMarker::SELECT_CENTER_MARKER_LABEL);
+    }
+
+    /**
+     * @return int
+     */
+    protected function _getSelectedCenterMarker()
+    {
+        $widgetParams = $this->_coreRegistry->registry('current_widget_instance')->getWidgetParameters();
+        return (int)(isset($widgetParams['center_marker'])) ? $widgetParams['center_marker'] : 0;
+    }
+
+    /**
+     * @return null|\Magento\Widget\Model\Widget\Instance
      */
     protected function _getCurrentWidget()
     {

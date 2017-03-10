@@ -84,4 +84,13 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         $this->getSelect()->order(new \Zend_Db_Expr('RAND()'));
         return $this;
     }
+
+    /**
+     * @return array
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function toOptionArray()
+    {
+        return parent::_toOptionArray($this->getResource()->getIdFieldName());
+    }
 }

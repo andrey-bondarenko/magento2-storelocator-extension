@@ -9,7 +9,10 @@ define([
             widgetId: '',
             widgetCode: '',
             markersSelect: '',
-            storeSelector: ''
+            storeSelector: '',
+            centerMarkerLabel: '',
+            centerMarkerSelector: '',
+            selectedCenterMarker: ''
         },
         /**
          *
@@ -25,7 +28,8 @@ define([
          */
         _init: function () {
             this.options.markersSelect = $("select[name*='parameters[markers][]']");
-            this.options.storeSelector = $("#store_ids")
+            this.options.storeSelector = $("#store_ids");
+            this.options.centerMarkerSelector = $("select[name*='parameters[center_marker]']");
         },
         /**
          *
@@ -38,6 +42,9 @@ define([
                     _this._lockedMarkerSelect();
                 }
             });
+            this.options.markersSelect.change(function () {
+                _this._updateCenterMarkerSelector(($(this).val()) ? $(this).val() : []);
+            });
             this.options.storeSelector.change(function () {
                 if ($(this).val()) {
                     _this._updateMarkersAjax($(this).val());
@@ -46,6 +53,32 @@ define([
                 }
             })
         },
+
+        /**
+         *
+         * @param markers
+         * @private
+         */
+        _updateCenterMarkerSelector: function (markers) {
+            this.options.centerMarkerSelector.empty();
+            var centerMarkerOptions = '<option value="0">' + this.options.centerMarkerLabel + '</option>';
+            if (markers.length) {
+                for (var i = 0; i < markers.length; i++) {
+                    var markerName = $("select[name*='parameters[markers][]'] option[value='" + markers[i] + "']").html();
+                    if (markerName) {
+                        var selected = '';
+                        if (this.options.selectedCenterMarker == markers[i]) {
+                            selected = 'selected = "selected"';
+                        }
+                        centerMarkerOptions += '<option ' +
+                            'value="' + parseInt(markers[i]) + '" ' +
+                            ' ' + selected + '>' + markerName + '</option>';
+                    }
+                }
+            }
+            this.options.centerMarkerSelector.append(centerMarkerOptions);
+        },
+
         /**
          *
          * @param stores

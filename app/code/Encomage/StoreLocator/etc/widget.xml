@@ -12,6 +12,9 @@
                 <label translate="true">Available Markers</label>
                 <description translate="true">First you should select 'Assign to Store Views'</description>
             </parameter>
+            <parameter xsi:type="select" name="center_marker" required="false" visible="true" source_model="Encomage\StoreLocator\Model\Config\Source\CenterMarker">
+                <label translate="true">Center on marker</label>
+            </parameter>
             <parameter xsi:type="select" name="is_show_markers_list" required="false" visible="true">
                 <label translate="true">Markers List</label>
                 <options>
