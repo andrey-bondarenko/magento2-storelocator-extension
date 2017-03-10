@@ -5,9 +5,31 @@
         <label translate="true">Store Locator</label>
         <description translate="true">Google Map Store Locator</description>
         <parameters>
+            <parameter xsi:type="text" name="widget_frontend_label" required="false" visible="true">
+                <label translate="true">Frontend widget label</label>
+            </parameter>
             <parameter xsi:type="multiselect" name="markers" visible="true" required="true" source_model="Encomage\StoreLocator\Model\Config\Source\Markers">
                 <label translate="true">Available Markers</label>
                 <description translate="true">First you should select 'Assign to Store Views'</description>
+            </parameter>
+            <parameter xsi:type="select" name="is_show_markers_list" required="false" visible="true">
+                <label translate="true">Markers List</label>
+                <options>
+                    <option name="yes" value="1" selected="true">
+                        <label translate="true">Enable</label>
+                    </option>
+                    <option name="no" value="0">
+                        <label translate="true">Disable</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter xsi:type="text" name="widget_width" required="false" visible="true">
+                <label translate="true">Widget Width</label>
+                <description translate="true">Example: 150px</description>
+            </parameter>
+            <parameter xsi:type="text" name="widget_height" required="false" visible="true">
+                <label translate="true">Widget Height</label>
+                <description translate="true">Example: 150px</description>
             </parameter>
         </parameters>
     </widget>

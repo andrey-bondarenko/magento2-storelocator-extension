@@ -75,16 +75,18 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
     {
         if (!$this->_options) {
             $stores = $this->_getStoresIds();
-            foreach ($stores as $store) {
-                if (!$store instanceof \Magento\Store\Model\Store) {
-                    $store = $this->_systemStore->getStoreData($store);
-                }
-                $marker = $this->_getMarkersByStore($store->getId());
-                if ($marker) {
-                    $this->_options[] = [
-                        'label' => __($store->getName()),
-                        'value' => $marker
-                    ];
+            if ($stores) {
+                foreach ($stores as $store) {
+                    if (!$store instanceof \Magento\Store\Model\Store) {
+                        $store = $this->_systemStore->getStoreData($store);
+                    }
+                    $marker = $this->_getMarkersByStore($store->getId());
+                    if ($marker) {
+                        $this->_options[] = [
+                            'label' => __($store->getName()),
+                            'value' => $marker
+                        ];
+                    }
                 }
             }
         }
