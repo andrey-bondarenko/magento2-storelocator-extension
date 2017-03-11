@@ -60,21 +60,30 @@ define([
          * @private
          */
         _updateCenterMarkerSelector: function (markers) {
+            var _this = this;
             this.options.centerMarkerSelector.empty();
             var centerMarkerOptions = '<option value="0">' + this.options.centerMarkerLabel + '</option>';
             if (markers.length) {
-                for (var i = 0; i < markers.length; i++) {
-                    var markerName = $("select[name*='parameters[markers][]'] option[value='" + markers[i] + "']").html();
+                $.each(markers, function (k, v) {
+                    var markerName = '',
+                        markerId = '';
+                    if (typeof v == "object") {
+                        markerName = v.label;
+                        markerId = v.value;
+                    } else {
+                        markerName = $("select[name*='parameters[markers][]'] option[value='" + v + "']").html();
+                        markerId = v;
+                    }
                     if (markerName) {
                         var selected = '';
-                        if (this.options.selectedCenterMarker == markers[i]) {
+                        if (_this.options.selectedCenterMarker == markerId) {
                             selected = 'selected = "selected"';
                         }
                         centerMarkerOptions += '<option ' +
-                            'value="' + parseInt(markers[i]) + '" ' +
+                            'value="' + parseInt(markerId) + '" ' +
                             ' ' + selected + '>' + markerName + '</option>';
                     }
-                }
+                });
             }
             this.options.centerMarkerSelector.append(centerMarkerOptions);
         },
@@ -110,7 +119,8 @@ define([
          * @private
          */
         _updateMarkersSelect: function (markers) {
-            var markerOptions = '';
+            var markerOptions = '',
+                updateCenterMarker = [];
             this.options.markersSelect.empty();
             $.each(markers, function (i, v) {
                 var optGroup = '<optgroup label="' + v.label + '">';
@@ -124,14 +134,17 @@ define([
                         + parseInt(marker.value) + '" ' + selected + ' >'
                         + marker.label +
                         '</option>';
+                    updateCenterMarker.push({value: parseInt(marker.value), label: marker.label})
                 }
                 optGroup += '</optgroup>';
                 markerOptions += optGroup;
             });
             if (markerOptions != '') {
                 this.options.markersSelect.attr('disabled', false);
+                this.options.centerMarkerSelector.attr('disabled', false);
+                this.options.markersSelect.append(markerOptions);
+                this._updateCenterMarkerSelector(updateCenterMarker);
             }
-            this.options.markersSelect.append(markerOptions);
         },
         /**
          *
@@ -139,6 +152,9 @@ define([
          */
         _lockedMarkerSelect: function () {
             this.options.markersSelect
+                .empty()
+                .attr('disabled', true);
+            this.options.centerMarkerSelector
                 .empty()
                 .attr('disabled', true);
         }

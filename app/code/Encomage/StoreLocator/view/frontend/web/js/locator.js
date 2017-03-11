@@ -10,7 +10,8 @@ define([
             defaultLat: '',
             defaultZoom: '',
             selectedMarkerZoom: '',
-            markers: ''
+            markers: '',
+            centerMarkerId: ''
         },
         _map: null,
         _placedMarkers: [],
@@ -42,8 +43,9 @@ define([
         _markerPlacement: function () {
             var _this = this;
             $.each(this.options.markers, function (i, v) {
+                var markerCoordinates = _this._prepareCoordinates(v.latitude, v.longitude);
                 _this._placedMarkers[i] = new google.maps.Marker({
-                    position: _this._prepareCoordinates(v.latitude, v.longitude),
+                    position: markerCoordinates,
                     map: _this._map
                 });
                 if (v.comment) {
@@ -54,6 +56,9 @@ define([
                 google.maps.event.addListener(_this._placedMarkers[i], 'click', function () {
                     _this._placedMarkers[i].info.open(_this._map, _this._placedMarkers[i]);
                 });
+                if (_this.options.centerMarkerId && _this.options.centerMarkerId == v.entity_id) {
+                    _this._map.setCenter(markerCoordinates);
+                }
             });
         },
         /**
