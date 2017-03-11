@@ -7,10 +7,22 @@
 
 /** @var \Encomage\StoreLocator\Block\Widget\StoreLocator $block */
 ?>
-
-<div><?php  $block->getTest();?></div>
-<div id="<?php echo $block->escapeHtml($block->getMapContainerId()); ?>" style="      height: 400px;
-        width: 100%;"></div>
+<?php if ($block->getLabel()): ?>
+    <p><?php echo $block->escapeHtml($block->getLabel()); ?></p>
+<?php endif; ?>
+<?php if ($block->isShowMarkersList()): ?>
+    <?php $markersCollection = $block->getCollection(); ?>
+    <?php if ($markersCollection->getSize()): ?>
+        <?php foreach ($markersCollection as $marker): ?>
+            <div
+                class="js-show-marker store-locator-widget"
+                data-marker-id="<?php echo (int)$marker->getId() ?>">
+                <?php echo $block->escapeHtml($marker->getName()); ?>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+<?php endif; ?>
+<div <?php /* @escapeNotVerified */ echo $block->getMapBlockAttributes(); ?>></div>
 <script type="text/x-magento-init">
   <?php
     /* @escapeNotVerified */

@@ -29,7 +29,6 @@ class StoreLocator extends MapAbstract implements BlockInterface
     protected function _construct()
     {
         parent::_construct();
-        //TODO:: Need find better solution
         if (!$this->_isPlacedMainLocatorBlock()) {
             $this->setTemplate('widget/store-locator.phtml');
         }
@@ -47,6 +46,69 @@ class StoreLocator extends MapAbstract implements BlockInterface
         return $this->_collection;
     }
 
+    /**
+     * @return array
+     */
+    public function getParams()
+    {
+        $params = parent::getParams();
+        if ($this->hasData('center_marker')) {
+            $params['centerMarkerId'] = (int)$this->getCenterMarker();
+        }
+        return $params;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLabel()
+    {
+        return $this->hasData('widget_frontend_label')
+            ? $this->getWidgetFrontendLabel()
+            : null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isShowMarkersList()
+    {
+        return (bool)$this->getIsShowMarkersList();
+    }
+    
+    /**
+     * @return string
+     */
+    public function getMapBlockAttributes()
+    {
+        $attributes = [
+            'id' => $this->getMapContainerId(),
+            'style' => $this->_getStyles()
+        ];
+        $stringAttributes = '';
+        foreach ($attributes as $attributeName => $attributeData) {
+            if ($attributeData) {
+                $stringAttributes .= $attributeName . '="' . $attributeData . '" ';
+            }
+        }
+        return $stringAttributes;
+    }
+
+    /**
+     * @return string
+     */
+    protected function _getStyles()
+    {
+        $styles = '';
+        if ($this->hasData('widget_width')) {
+            $styles .= 'width:' . $this->escapeHtml($this->getWidgetWidth()) . '; ';
+        }
+        if ($this->hasData('widget_height')) {
+            $styles .= 'height:' . $this->escapeHtml($this->getWidgetHeight()) . '; ';
+        }
+        return $styles;
+    }
+    
     /**
      * @return bool
      * @throws \Magento\Framework\Exception\LocalizedException

@@ -26,28 +26,6 @@
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Google Maps API version</label>
                 </field>
-                <field id="show_on_column" translate="label" type="select" sortOrder="40"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enabled On Frontend</label>
-                    <source_model>Encomage\StoreLocator\Model\Config\Source\FrontendColumn</source_model>
-                </field>
-                <field id="title_on_sidebar" translate="label" type="text" sortOrder="50"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Title On Sidebar</label>
-                </field>
-                <field id="show_on_sidebar_map" translate="label" type="select" sortOrder="60"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Show Marker On Sidebar Map</label>
-                    <source_model>Encomage\StoreLocator\Model\Config\Source\ShowOnSidebarMap</source_model>
-                </field>
-                <field id="show_markers_on_sidebar_map" translate="label" type="multiselect" sortOrder="70"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Show Marker On Sidebar Map</label>
-                    <depends>
-                        <field id="*/*/show_on_sidebar_map">marker</field>
-                    </depends>
-                    <source_model>Encomage\StoreLocator\Model\Config\Source\Markers</source_model>
-                </field>
             </group>
             <group id="marker_options" translate="label" type="text" sortOrder="20"
                    showInDefault="1" showInWebsite="1" showInStore="1">

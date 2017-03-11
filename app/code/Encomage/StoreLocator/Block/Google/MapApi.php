@@ -23,7 +23,7 @@ class MapApi extends \Magento\Framework\View\Element\Template
      */
     public function getApiKey()
     {
-        return $this->_scopeConfig->getValue(\Encomage\StoreLocator\Helper\Config::GOOGLE_API_KEY_PATH);
+        return $this->_scopeConfig->getValue(\Encomage\StoreLocator\Helper\Config::XML_PATH_GOOGLE_API_KEY_PATH);
     }
 
     /**
@@ -31,6 +31,6 @@ class MapApi extends \Magento\Framework\View\Element\Template
      */
     public function getApiVersion()
     {
-        return $this->_scopeConfig->getValue(\Encomage\StoreLocator\Helper\Config::GOOGLE_API_VERSION_PATH);
+        return $this->_scopeConfig->getValue(\Encomage\StoreLocator\Helper\Config::XML_PATH_GOOGLE_API_VERSION_PATH);
     }
 }

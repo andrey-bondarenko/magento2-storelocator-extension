@@ -86,4 +86,15 @@ class Marker extends \Magento\Framework\Model\AbstractModel
         }
         return $errors;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getStoreIds()
+    {
+        if (is_string($this->getData('store_id'))) {
+            return explode(',', $this->getData('store_id'));
+        }
+        return $this->getData('store_id');
+    }
 }

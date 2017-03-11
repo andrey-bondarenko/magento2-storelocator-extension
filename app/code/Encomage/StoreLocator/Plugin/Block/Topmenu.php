@@ -25,16 +25,23 @@ class Topmenu
     protected $_urlBuilder;
 
     /**
+     * @var \Encomage\StoreLocator\Helper\Config
+     */
+    protected $_configHelper;
+
+    /**
      * Topmenu constructor.
      * @param \Magento\Framework\Data\Tree\NodeFactory $nodeFactory
      */
     public function __construct(
         \Magento\Framework\Data\Tree\NodeFactory $nodeFactory,
-        \Magento\Framework\UrlInterface $urlBuilder
+        \Magento\Framework\UrlInterface $urlBuilder,
+        \Encomage\StoreLocator\Helper\Config $configHelper
     )
     {
-        $this->_nodeFactory = $nodeFactory;
         $this->_urlBuilder = $urlBuilder;
+        $this->_nodeFactory = $nodeFactory;
+        $this->_configHelper = $configHelper;
     }
 
     /**
@@ -50,17 +57,19 @@ class Topmenu
         $limit = 0
     )
     {
-        $node = $this->_nodeFactory->create(
-            [
-                'data' => [
-                    'name' => __('Store Locator'),
-                    'id' => 'store-locator',
-                    'url' => $this->_urlBuilder->getUrl('storelocator')
-                ],
-                'idField' => 'id',
-                'tree' => $subject->getMenu()->getTree()
-            ]
-        );
-        $subject->getMenu()->addChild($node);
+        if ($this->_configHelper->isEnabledFrontendPage()) {
+            $node = $this->_nodeFactory->create(
+                [
+                    'data' => [
+                        'name' => __('Store Locator'),
+                        'id' => 'store-locator',
+                        'url' => $this->_urlBuilder->getUrl('storelocator')
+                    ],
+                    'idField' => 'id',
+                    'tree' => $subject->getMenu()->getTree()
+                ]
+            );
+            $subject->getMenu()->addChild($node);
+        }
     }
 }

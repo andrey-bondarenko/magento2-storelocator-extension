@@ -70,16 +70,16 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         return [
             'selector' => $this->getMapContainerId(),
             'defaultLat' => $this->_scopeConfig->getValue(
-                \Encomage\StoreLocator\Helper\Config::DEFAULT_COORDINATES_LAT_PATH
+                \Encomage\StoreLocator\Helper\Config::XML_PATH_DEFAULT_COORDINATES_LAT_PATH
             ),
             'defaultLng' => $this->_scopeConfig->getValue(
-                \Encomage\StoreLocator\Helper\Config::DEFAULT_COORDINATES_LNG_PATH
+                \Encomage\StoreLocator\Helper\Config::XML_PATH_DEFAULT_COORDINATES_LNG_PATH
             ),
             'defaultZoom' => $this->_scopeConfig->getValue(
-                \Encomage\StoreLocator\Helper\Config::DEFAULT_ZOOM_PATH
+                \Encomage\StoreLocator\Helper\Config::XML_PATH_DEFAULT_ZOOM_PATH
             ),
             'selectedMarkerZoom' => $this->_scopeConfig->getValue(
-                \Encomage\StoreLocator\Helper\Config::SELECTED_MARKER_ZOOM_PATH
+                \Encomage\StoreLocator\Helper\Config::XML_PATH_SELECTED_MARKER_ZOOM_PATH
             ),
             'markers' => $this->_getStoreMarkers()
         ];
