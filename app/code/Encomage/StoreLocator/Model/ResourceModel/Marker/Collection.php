@@ -62,16 +62,28 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         );
     }
 
+    /**
+     * @param null $storeId
+     * @return $this
+     */
     public function getDataByStore($storeId = null)
     {
         if (!$storeId) {
             $storeId = $this->_storeManager->getStore()->getId();
         }
-        $this->getSelect()
-            ->where('`store_id` LIKE ?', '%' . (int)$storeId . '%');
-        if ($storeId !== 0) {
-            $this->getSelect()->orWhere('`store_id` LIKE ?', '%0%');
+        $fields = ['store_id'];
+        $conditions = [
+            [
+                'like' => '%' . (int)$storeId . '%'
+            ]
+        ];
+        if ($storeId != 0) {
+            $fields[] = 'store_id';
+            $conditions[] = [
+                'like' => '%0%'
+            ];
         }
+        $this->addFieldToFilter($fields, $conditions);
         return $this;
     }
 
