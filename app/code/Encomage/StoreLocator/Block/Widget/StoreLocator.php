@@ -75,16 +75,48 @@ class StoreLocator extends MapAbstract implements BlockInterface
     {
         return (bool)$this->getIsShowMarkersList();
     }
-    
+
     /**
      * @return string
      */
     public function getMapBlockAttributes()
     {
-        $attributes = [
-            'id' => $this->getMapContainerId(),
-            'style' => $this->_getStyles()
-        ];
+        return $this->_prepareStyleProperties(
+            [
+                'id' => $this->getMapContainerId(),
+                'style' => $this->_getWidgetMapStyles()
+            ]
+        );
+    }
+
+    /**
+     * @return string
+     */
+    public function getListingBlockAttributes()
+    {
+        return ($this->hasData('widget_width'))
+            ? $this->_prepareStyleProperties(
+                [
+                    'style' => 'width:' . $this->escapeHtml($this->getData('widget_width')) . '; '
+                ]
+            )
+            : '';
+    }
+
+    /**
+     * @return bool
+     */
+    public function isListingEnabled()
+    {
+        return (bool)$this->getData('is_show_markers_list');
+    }
+
+    /**
+     * @param array $attributes
+     * @return string
+     */
+    protected function _prepareStyleProperties(array $attributes)
+    {
         $stringAttributes = '';
         foreach ($attributes as $attributeName => $attributeData) {
             if ($attributeData) {
@@ -97,7 +129,7 @@ class StoreLocator extends MapAbstract implements BlockInterface
     /**
      * @return string
      */
-    protected function _getStyles()
+    protected function _getWidgetMapStyles()
     {
         $styles = '';
         if ($this->hasData('widget_width')) {

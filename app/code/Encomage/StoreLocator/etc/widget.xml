@@ -2,7 +2,7 @@
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
     <widget id="encomage_storelocator" class="\Encomage\StoreLocator\Block\Widget\StoreLocator">
-        <label translate="true">Store Locator</label>
+        <label translate="true">Encomage Store Locator</label>
         <description translate="true">Google Map Store Locator</description>
         <parameters>
             <parameter xsi:type="text" name="widget_frontend_label" required="false" visible="true">
