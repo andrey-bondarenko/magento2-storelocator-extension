@@ -26,6 +26,21 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
     protected $_configHelper;
 
     /**
+     * @var \Magento\Framework\View\Asset\Repository
+     */
+    protected $_assetRepository;
+
+    /**
+     * @var \Magento\Framework\View\Asset\GroupedCollection
+     */
+    protected $_assetCollection;
+
+    /**
+     * @var string
+     */
+    protected $_cssIdentifier = 'Encomage_StoreLocator::css/storelocator.css';
+
+    /**
      * MapAbstract constructor.
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Encomage\StoreLocator\Model\ResourceModel\Marker\CollectionFactory $markersCollectionFactory
@@ -36,13 +51,18 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Encomage\StoreLocator\Model\ResourceModel\Marker\CollectionFactory $markersCollectionFactory,
         \Encomage\StoreLocator\Helper\Config $config,
+        \Magento\Framework\View\Asset\Repository $assetRepository,
+        \Magento\Framework\View\Asset\GroupedCollection $assetCollection,
         array $data = []
     )
     {
         parent::__construct($context, $data);
         $this->_configHelper = $config;
         $this->_markersCollection = $markersCollectionFactory->create();
-        $this->_addGoogleMapApiScript();
+        $this->_assetRepository = $assetRepository;
+        $this->_assetCollection = $assetCollection;
+        $this->_addGoogleMapApiScript()
+            ->_addStyleAsset();
     }
 
 
@@ -111,6 +131,18 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
                 'head.additional'
             );
         }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function _addStyleAsset()
+    {
+        $this->_assetCollection->add(
+            $this->_cssIdentifier,
+            $this->_assetRepository->createAsset($this->_cssIdentifier)
+        );
         return $this;
     }
 }

@@ -7,22 +7,37 @@
 
 /** @var \Encomage\StoreLocator\Block\Widget\StoreLocator $block */
 ?>
-<?php if ($block->getLabel()): ?>
-    <p><?php echo $block->escapeHtml($block->getLabel()); ?></p>
-<?php endif; ?>
-<?php if ($block->isShowMarkersList()): ?>
-    <?php $markersCollection = $block->getCollection(); ?>
-    <?php if ($markersCollection->getSize()): ?>
-        <?php foreach ($markersCollection as $marker): ?>
-            <div
-                class="js-show-marker store-locator-widget"
-                data-marker-id="<?php echo (int)$marker->getId() ?>">
-                <?php echo $block->escapeHtml($marker->getName()); ?>
-            </div>
-        <?php endforeach; ?>
+<div class="block widget-store-locator">
+    <?php if ($block->getLabel()): ?>
+        <div class="block-title">
+            <strong><?php echo $block->escapeHtml($block->getLabel()); ?></strong>
+        </div>
     <?php endif; ?>
-<?php endif; ?>
-<div <?php /* @escapeNotVerified */ echo $block->getMapBlockAttributes(); ?>></div>
+    <div class="block-content">
+        <?php if ($block->isListingEnabled()): ?>
+            <div
+                class="store-locator-marker-listing"
+                <?php echo $block->getListingBlockAttributes(); ?>>
+                <?php if ($block->isShowMarkersList()): ?>
+                    <?php $markersCollection = $block->getCollection(); ?>
+                    <?php if ($markersCollection->getSize()): ?>
+                        <?php foreach ($markersCollection as $marker): ?>
+                            <div class="js-show-marker markers-listing-item"
+                                 data-marker-id="<?php echo (int)$marker->getId() ?>">
+                                <div class="store-locator-widget title">
+                                    <?php echo $block->escapeHtml($marker->getName()); ?>
+                                </div>
+                                <div class="marker-icon"></div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+        <div <?php /* @escapeNotVerified */
+        echo $block->getMapBlockAttributes(); ?>></div>
+    </div>
+</div>
 <script type="text/x-magento-init">
   <?php
     /* @escapeNotVerified */
