@@ -14,5 +14,8 @@
         <referenceContainer name="content">
             <uiComponent name="markers_form"/>
         </referenceContainer>
+        <referenceContainer name="js">
+            <block class="Magento\Framework\View\Element\Template" template="Encomage_StoreLocator::markers/script.phtml"/>
+        </referenceContainer>
     </body>
 </page>

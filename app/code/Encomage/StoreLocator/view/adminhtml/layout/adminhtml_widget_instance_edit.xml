@@ -4,7 +4,7 @@
     <body>
         <referenceContainer name="js">
             <block class="Encomage\StoreLocator\Block\Adminhtml\Widget\Script" name="init_storelocator_widget_dependency"
-                   template="Encomage_StoreLocator::script.phtml"/>
+                   template="Encomage_StoreLocator::widget/script.phtml"/>
         </referenceContainer>
     </body>
 </page>

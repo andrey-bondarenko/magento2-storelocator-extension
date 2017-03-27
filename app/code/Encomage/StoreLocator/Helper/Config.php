@@ -31,4 +31,14 @@ class Config extends AbstractHelper
     {
         return $this->scopeConfig->isSetFlag(self::XML_PATH_IS_ENABLED_FRONTEND_PAGE);
     }
+
+    /**
+     * @return string
+     */
+    public function getGoogleMapApiJsUrl()
+    {
+        return 'https://maps.googleapis.com/maps/api/js?v=' .
+        $this->scopeConfig->getValue(self::XML_PATH_GOOGLE_API_VERSION_PATH) . '&key=' .
+        $this->scopeConfig->getValue(self::XML_PATH_GOOGLE_API_KEY_PATH);
+    }
 }

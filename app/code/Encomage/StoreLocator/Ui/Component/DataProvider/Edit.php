@@ -39,7 +39,6 @@ class Edit extends \Magento\Ui\DataProvider\AbstractDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
-
     /**
      * @return array
      */
