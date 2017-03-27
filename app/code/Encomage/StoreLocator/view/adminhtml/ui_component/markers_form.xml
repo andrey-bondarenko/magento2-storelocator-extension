@@ -140,7 +140,7 @@
                     <item name="sortOrder" xsi:type="number">60</item>
                     <item name="dataType" xsi:type="string">string</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="label" xsi:type="string" translate="true">Address</item>
+                    <item name="label" xsi:type="string" translate="true">Address search</item>
                     <item name="component" xsi:type="string">Encomage_StoreLocator/js/components/form/google_address_search</item>
                     <item name="elementTmpl" xsi:type="string">Encomage_StoreLocator/form/element/google_address_search.html</item>
                 </item>

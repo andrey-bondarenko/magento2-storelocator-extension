@@ -5,7 +5,7 @@ define([
 ], function ($, Abstract, alert) {
     return Abstract.extend({
         defaults: {
-            placeholder: 'search...'
+            placeholder: 'Start type...'
         },
         _defaultZoom: 8,
         _selectedMarkerZoom: 20,
