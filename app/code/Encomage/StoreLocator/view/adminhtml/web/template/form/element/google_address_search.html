@@ -1,0 +1,10 @@
+<input class="admin__control-text" type="text" id="google-address-search"
+       data-bind="
+        value: value,
+        afterRender: onElementRender,
+        attr: {
+            name: inputName,
+            placeholder: placeholder,
+            'aria-describedby': noticeId,
+    }"/>
+<div id="google-address-search-map" style="width: 500px; height: 500px"></div>
