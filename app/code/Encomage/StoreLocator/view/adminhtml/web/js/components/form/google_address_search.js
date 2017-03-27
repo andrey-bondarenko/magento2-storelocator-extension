@@ -19,6 +19,10 @@ define([
             lat: null,
             lng: null
         },
+        _defaultLatLng: {
+            lat: '47.795770',
+            lng: '35.202652'
+        },
 
         /**
          * Construct
@@ -55,14 +59,14 @@ define([
                 }
                 _this._updateMarker(place.geometry.location);
             });
-            this._map.addListener('dblclick', function(e) {
+            this._map.addListener('dblclick', function (e) {
                 var currentZoom = _this._map.getZoom();
-                if(currentZoom < _this._dbClickZoom){
+                if (currentZoom < _this._dbClickZoom) {
                     _this._map.setZoom(_this._dbClickZoom);
                 }
                 _this._updateMarker(e.latLng);
             });
-            this._marker.addListener('click', function() {
+            this._marker.addListener('click', function () {
                 _this._map.setZoom(_this.selectedShippingMethod);
                 _this._map.setCenter(_this._marker.getPosition());
             });
@@ -72,7 +76,7 @@ define([
          * @param location
          * @private
          */
-        _updateMarker: function(location){
+        _updateMarker: function (location) {
             this._marker.setVisible(false);
             this._marker.setPosition(location);
             this._map.setCenter(location);
@@ -86,7 +90,7 @@ define([
         _init: function () {
             this._map = new google.maps.Map(document.getElementById('google-address-search-map'), {
                 zoom: this._defaultZoom,
-                center: new google.maps.LatLng('47.795770', '35.202652')
+                center: new google.maps.LatLng(this._defaultLatLng.lat, this._defaultLatLng.lng)
             });
             this._marker = new google.maps.Marker({
                 map: this._map,
