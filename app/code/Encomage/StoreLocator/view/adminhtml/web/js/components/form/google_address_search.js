@@ -41,12 +41,22 @@ define([
 
         },
 
-        _initFieldsValue:function () {
-            if(this.initialValue){
-                var data = this.initialValue.split(':');
+        _initFieldsValue: function () {
+            var data = this._getUnSplitCoordinates();
+            if (data) {
                 this.valueLat(data[0]);
                 this.valueLng(data[1]);
             }
+        },
+
+        _getUnSplitCoordinates: function () {
+            if (this.initialValue) {
+                var data = this.initialValue.split(':');
+                if (data.length == 2) {
+                    return data;
+                }
+            }
+            return null;
         },
 
         /**
@@ -108,6 +118,12 @@ define([
                 map: this._map,
                 anchorPoint: new google.maps.Point(0, -29)
             });
+            var data = this._getUnSplitCoordinates();
+            if (data) {
+                this.valueLat(data[0]);
+                this.valueLng(data[1]);
+                this._updateMarker(new google.maps.LatLng(data[0], data[1]))
+            }
         },
         /**
          *

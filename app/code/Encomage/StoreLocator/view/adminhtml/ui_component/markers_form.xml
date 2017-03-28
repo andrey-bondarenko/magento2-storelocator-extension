@@ -115,6 +115,9 @@
                     <item name="elementTmpl" xsi:type="string">Encomage_StoreLocator/form/element/google_address_search</item>
                     <item name="source" xsi:type="string">coordinates</item>
                     <item name="dataScope" xsi:type="string">coordinates</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>

@@ -54,8 +54,12 @@ class Save extends \Magento\Backend\App\Action
         $resultRedirect = $this->resultRedirectFactory->create();
         if (isset($requestParams['coordinates'])) {
             $coordinates = explode(':', $requestParams['coordinates']);
-            $requestParams['latitude']  = $coordinates[0];
-            $requestParams['longitude'] = $coordinates[1];
+            if (isset($coordinates[0])) {
+                $requestParams['latitude'] = $coordinates[0];
+            }
+            if (isset($coordinates[1])) {
+                $requestParams['longitude'] = $coordinates[1];
+            }
         }
         $errorInRequestData = $this->_markerObject->validateData($requestParams);
         if (!empty($errorInRequestData)) {
