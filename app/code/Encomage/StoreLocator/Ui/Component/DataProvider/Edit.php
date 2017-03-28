@@ -47,9 +47,21 @@ class Edit extends \Magento\Ui\DataProvider\AbstractDataProvider
         if (!isset($this->_loadedData)) {
             $items = $this->collection->getItems();
             foreach ($items as $marker) {
-                $this->_loadedData[$marker->getId()] = $marker->getData();
+                $this->_loadedData[$marker->getId()] = $this->_prepareData($marker->getData());
             }
         }
         return $this->_loadedData;
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    protected function _prepareData(array $data)
+    {
+        (isset($data['longitude']) && isset($data['latitude']))
+            ? $data['coordinates'] = $data['latitude'] . ':' . $data['longitude']
+            : $data['coordinates'] = '';
+        return $data;
     }
 }

@@ -1,10 +1,30 @@
+<input class="admin__control-text _required" type="text" id="google-address-lat"
+       data-bind="
+        value: valueLat,
+        attr: {
+            name: inputName,
+            placeholder: placeholderLat,
+            'aria-describedby': noticeId,
+    }"/>
+<input class="admin__control-text _required" type="text" id="google-address-lng"
+       data-bind="
+        value: valueLng,
+        attr: {
+            name: inputName,
+            placeholder: placeholderLng,
+            'aria-describedby': noticeId,
+    }"/>
 <input class="admin__control-text" type="text" id="google-address-search"
        data-bind="
-        value: value,
-        afterRender: onElementRender,
+        value: valueSearch,
         attr: {
             name: inputName,
             placeholder: placeholder,
             'aria-describedby': noticeId,
     }"/>
+<input class="admin__control-text" type="text" id="google-address-search-result"
+       data-bind="
+        value: value,
+        afterRender: onElementRender"
+       name="coordinates"/>
 <div id="google-address-search-map" class="google-address-search-map-container"></div>

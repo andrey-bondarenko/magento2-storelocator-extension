@@ -1,12 +1,19 @@
 define([
     "jquery",
     "Magento_Ui/js/form/element/abstract",
-    "Magento_Ui/js/modal/alert"
-], function ($, Abstract, alert) {
+    "Magento_Ui/js/modal/alert",
+    "ko"
+], function ($, Abstract, alert, ko) {
     return Abstract.extend({
         defaults: {
-            placeholder: 'Start type...'
+            placeholder: 'Start type...',
+            placeholderLng: 'Longitude...',
+            placeholderLat: 'Latitude...'
+
         },
+        valueLat: ko.observable(''),
+        valueLng: ko.observable(''),
+        valueSearch: ko.observable(''),
         _defaultZoom: 8,
         _selectedMarkerZoom: 20,
         _dbClickZoom: 12,
@@ -15,10 +22,6 @@ define([
         _marker: null,
         _autocomplete: null,
         _infoWindow: null,
-        _fields: {
-            lat: null,
-            lng: null
-        },
         _defaultLatLng: {
             lat: '47.795770',
             lng: '35.202652'
@@ -28,15 +31,24 @@ define([
          * Construct
          */
         onElementRender: function () {
-            var _this = this;
             this._infoWindow = new google.maps.InfoWindow();
             this._init();
+            this._initFieldsValue();
             this._autocomplete = new google.maps.places.Autocomplete(
                 /** @type {!HTMLInputElement} */(document.getElementById('google-address-search')),
                 {types: ['geocode']});
             this._events();
 
         },
+
+        _initFieldsValue:function () {
+            if(this.initialValue){
+                var data = this.initialValue.split(':');
+                this.valueLat(data[0]);
+                this.valueLng(data[1]);
+            }
+        },
+
         /**
          *
          * @private
@@ -96,13 +108,6 @@ define([
                 map: this._map,
                 anchorPoint: new google.maps.Point(0, -29)
             });
-            var lat, lng;
-            lat = $("input[name='latitude']");
-            lng = $("input[name='longitude']");
-            if (lat.length && lng.length) {
-                this._fields.lat = lat;
-                this._fields.lng = lng;
-            }
         },
         /**
          *
@@ -111,10 +116,9 @@ define([
          * @private
          */
         _updateFieldsParams: function (lat, lng) {
-            if (this._fields.lat && this._fields.lng) {
-                $(this._fields.lat).val(lat);
-                $(this._fields.lng).val(lng);
-            }
+            this.valueLat(lat);
+            this.valueLng(lng);
+            this.value(lat + ':' + lng)
         }
     })
 });
