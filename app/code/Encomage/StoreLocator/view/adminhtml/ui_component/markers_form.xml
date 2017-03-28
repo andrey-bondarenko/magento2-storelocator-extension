@@ -46,7 +46,7 @@
     <fieldset name="general">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string"/>
+                <item name="label" xsi:type="string" translate="true">General</item>
             </item>
         </argument>
         <field name="entity_id">
@@ -104,6 +104,13 @@
                 </item>
             </argument>
         </field>
+    </fieldset>
+    <fieldset name="address">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Marker Address</item>
+            </item>
+        </argument>
         <field name="coordinates">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
