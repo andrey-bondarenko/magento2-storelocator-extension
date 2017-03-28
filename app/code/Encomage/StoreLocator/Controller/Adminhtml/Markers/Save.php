@@ -72,7 +72,7 @@ class Save extends \Magento\Backend\App\Action
             $this->_markerObject->loadMarkerById($entityId);
         }
         $this->_markerObject
-            ->setData(
+            ->addData(
                 [
                     'name'      => $requestParams['name'],
                     'latitude'  => $requestParams['latitude'],
