@@ -34,9 +34,6 @@ define([
             this._infoWindow = new google.maps.InfoWindow();
             this._init();
             this._initFieldsValue();
-            this._autocomplete = new google.maps.places.Autocomplete(
-                /** @type {!HTMLInputElement} */(document.getElementById('google-address-search')),
-                {types: ['geocode']});
             this._events();
 
         },
@@ -118,6 +115,10 @@ define([
                 map: this._map,
                 anchorPoint: new google.maps.Point(0, -29)
             });
+            this._autocomplete = new google.maps.places.Autocomplete(
+                (document.getElementById('google-address-search')),
+                {types: ['geocode']}
+            );
             var data = this._getUnSplitCoordinates();
             if (data) {
                 this.valueLat(data[0]);
