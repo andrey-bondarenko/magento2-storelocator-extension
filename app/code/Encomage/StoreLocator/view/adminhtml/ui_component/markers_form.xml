@@ -122,6 +122,10 @@
                     <item name="elementTmpl" xsi:type="string">Encomage_StoreLocator/form/element/google_address_search</item>
                     <item name="source" xsi:type="string">coordinates</item>
                     <item name="dataScope" xsi:type="string">coordinates</item>
+                    <item name="title" xsi:type="string" translate="true">Show on the map</item>
+                    <item name="placeholder" xsi:type="string" translate="true">Start type...</item>
+                    <item name="placeholderLng" xsi:type="string" translate="true">Longitude...</item>
+                    <item name="placeholderLat" xsi:type="string" translate="true">Latitude...</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>

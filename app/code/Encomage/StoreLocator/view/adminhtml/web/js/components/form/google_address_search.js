@@ -5,12 +5,6 @@ define([
     "ko"
 ], function ($, Abstract, alert, ko) {
     return Abstract.extend({
-        defaults: {
-            placeholder: 'Start type...',
-            placeholderLng: 'Longitude...',
-            placeholderLat: 'Latitude...'
-
-        },
         valueLat: ko.observable(''),
         valueLng: ko.observable(''),
         valueSearch: ko.observable(''),
@@ -31,13 +25,21 @@ define([
          * Construct
          */
         onElementRender: function () {
-            this._infoWindow = new google.maps.InfoWindow();
             this._init();
             this._initFieldsValue();
             this._events();
 
         },
-
+        /**
+         * button click event
+         */
+        clickShowMarkerOnMap: function () {
+            this._updateMarker(new google.maps.LatLng(this.valueLat(), this.valueLng()));
+        },
+        /**
+         * Set value coordinates fields
+         * @private
+         */
         _initFieldsValue: function () {
             var data = this._getUnSplitCoordinates();
             if (data) {
@@ -46,6 +48,11 @@ define([
             }
         },
 
+        /**
+         * Prepare coordinates data
+         * @returns {*}
+         * @private
+         */
         _getUnSplitCoordinates: function () {
             if (this.initialValue) {
                 var data = this.initialValue.split(':');
@@ -77,6 +84,7 @@ define([
                     _this._map.setZoom(_this._defaultZoom);
                 }
                 _this._updateMarker(place.geometry.location);
+                _this._updateFieldsParams(place.geometry.location.lat(), place.geometry.location.lng());
             });
             this._map.addListener('dblclick', function (e) {
                 var currentZoom = _this._map.getZoom();
@@ -84,9 +92,10 @@ define([
                     _this._map.setZoom(_this._dbClickZoom);
                 }
                 _this._updateMarker(e.latLng);
+                _this._updateFieldsParams(e.latLng.lat(), e.latLng.lng());
             });
             this._marker.addListener('click', function () {
-                _this._map.setZoom(_this.selectedShippingMethod);
+                _this._map.setZoom(_this._selectedMarkerZoom);
                 _this._map.setCenter(_this._marker.getPosition());
             });
         },
@@ -100,13 +109,13 @@ define([
             this._marker.setPosition(location);
             this._map.setCenter(location);
             this._marker.setVisible(true);
-            this._updateFieldsParams(location.lat(), location.lng());
         },
         /**
          *
          * @private
          */
         _init: function () {
+            this._infoWindow = new google.maps.InfoWindow();
             this._map = new google.maps.Map(document.getElementById('google-address-search-map'), {
                 zoom: this._defaultZoom,
                 center: new google.maps.LatLng(this._defaultLatLng.lat, this._defaultLatLng.lng)
@@ -123,11 +132,12 @@ define([
             if (data) {
                 this.valueLat(data[0]);
                 this.valueLng(data[1]);
-                this._updateMarker(new google.maps.LatLng(data[0], data[1]))
+                this._updateMarker(new google.maps.LatLng(data[0], data[1]));
+                this._updateFieldsParams(data[0], data[1]);
             }
         },
         /**
-         *
+         * Update params in coordinates fields
          * @param lat
          * @param lng
          * @private
