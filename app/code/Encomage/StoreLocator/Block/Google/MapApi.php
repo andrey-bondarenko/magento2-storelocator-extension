@@ -13,24 +13,9 @@ namespace Encomage\StoreLocator\Block\Google;
  */
 class MapApi extends \Magento\Framework\View\Element\Template
 {
+    //TODO:: Need find better solutions for remove this class
     /**
      * @var string
      */
     protected $_template = 'Encomage_StoreLocator::js/script.phtml';
-    
-    /**
-     * @return mixed
-     */
-    public function getApiKey()
-    {
-        return $this->_scopeConfig->getValue(\Encomage\StoreLocator\Helper\Config::XML_PATH_GOOGLE_API_KEY_PATH);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getApiVersion()
-    {
-        return $this->_scopeConfig->getValue(\Encomage\StoreLocator\Helper\Config::XML_PATH_GOOGLE_API_VERSION_PATH);
-    }
 }
