@@ -7,5 +7,5 @@
 
 /** @var \Encomage\StoreLocator\Block\Google\MapApi $block */
 ?>
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=<?php echo $block->escapeHtml($block->getApiVersion()) ?>&key=<?php echo $block->escapeHtml($block->getApiKey());?>"></script>
+<?php $helper = $this->helper('\Encomage\StoreLocator\Helper\Config'); ?>
+<script type="text/javascript" src="<?php echo $this->escapeUrl($helper->getGoogleMapApiJsUrl()); ?>"></script>

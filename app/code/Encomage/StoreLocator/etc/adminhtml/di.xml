@@ -36,4 +36,7 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Framework\View\Page\Config\Generator\Head">
+        <plugin name="storelocator-generator-head" type="Encomage\StoreLocator\Plugin\View\Page\Config\Generator\Head"/>
+    </type>
 </config>
