@@ -35,6 +35,7 @@ define([
          */
         clickShowMarkerOnMap: function () {
             this._updateMarker(new google.maps.LatLng(this.valueLat(), this.valueLng()));
+            this.value(this.valueLat() + ':' + this.valueLng())
         },
         /**
          * Set value coordinates fields

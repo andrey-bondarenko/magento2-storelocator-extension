@@ -5,14 +5,14 @@
  * @mail info@encomage.com
  */
 
-namespace Encomage\StoreLocator\Block\Adminhtml\Page\Edit;
+namespace Encomage\StoreLocator\Block\Adminhtml\Markers\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Cms\Block\Adminhtml\Page\Edit\GenericButton;
 
 /**
  * Class SaveButton
- * @package Encomage\StoreLocator\Block\Adminhtml\Page\Edit
+ * @package Encomage\StoreLocator\Block\Adminhtml\Markers\Edit
  */
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {
