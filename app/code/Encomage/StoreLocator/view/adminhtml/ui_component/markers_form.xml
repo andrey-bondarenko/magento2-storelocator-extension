@@ -126,6 +126,7 @@
                     <item name="placeholder" xsi:type="string" translate="true">Start type...</item>
                     <item name="placeholderLng" xsi:type="string" translate="true">Longitude...</item>
                     <item name="placeholderLat" xsi:type="string" translate="true">Latitude...</item>
+                    <item name="searchNotice" xsi:type="string" translate="true">Start to type for search new location</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>

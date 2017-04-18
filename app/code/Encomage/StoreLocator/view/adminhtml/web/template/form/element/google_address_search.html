@@ -24,8 +24,7 @@
     <span text="title">
     </span>
 </button>
-
-<input class="admin__field admin__control-text" type="text" id="google-address-search"
+<input class="admin__field google-search-field" type="text" id="google-address-search"
        data-bind="
         value: valueSearch,
         attr: {
@@ -33,7 +32,12 @@
             placeholder: placeholder,
             'aria-describedby': noticeId,
     }"/>
-<input class="admin__control-text" type="hidden" id="google-address-search-result"
+<!-- ko if: $data.searchNotice -->
+<div class="admin__field-note google-search-notice" data-bind="attr: {id: noticeId}">
+    <span data-bind="text: searchNotice"></span>
+</div>
+<!-- /ko -->
+<input class="google-search-field" type="hidden" id="google-address-search-result"
        data-bind="
         value: value,
         afterRender: onElementRender"
