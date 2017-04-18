@@ -12,18 +12,22 @@
     border-bottom: 1px solid #cccccc;
     padding-bottom: 10px;
 }
-.widget-store-locator .markers-listing-item:hover  .marker-icon{
+
+.widget-store-locator .markers-listing-item:hover .marker-icon,
+.store-locator-page-markers-list .markers-listing-item:hover .marker-icon {
     -webkit-transform: scale(1.1, 1.1);
     -ms-transform: scale(1.1, 1.1);
     -o-transform: scale(1.1, 1.1);
     transform: scale(1.1, 1.1);
 }
-.widget-store-locator .markers-listing-item .title, .widget-store-locator .marker-icon{
+
+.widget-store-locator .markers-listing-item .title, .widget-store-locator .marker-icon {
     display: inline-block;
 }
-.widget-store-locator .markers-listing-item .title {
+
+.widget-store-locator .markers-listing-item .title,
+.store-locator-page-markers-list .markers-listing-item .title {
     max-width: 62%;
-    padding: 10px 40px 0 10px;
     font-weight: 600;
     margin: 0;
     overflow: hidden;
@@ -31,14 +35,74 @@
     text-decoration: none;
     text-transform: uppercase;
 }
-.widget-store-locator .marker-icon{
-    background: url(../images/marker.jpg) no-repeat 0 5px;
+
+.widget-store-locator .markers-listing-item .title {
+    padding: 10px 40px 0 10px;
+}
+
+.widget-store-locator .marker-icon, .store-locator-page-markers-list .markers-listing-item .marker-icon {
+    background: url(../images/marker.jpg) no-repeat 0 0;
     width: 12%;
     height: 30px;
     background-size: 20px;
     float: right;
-    padding: 10px 10px 0 0;
     webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     transition: all 0.2s ease-out;
+}
+
+.widget-store-locator .marker-icon {
+    padding: 10px 10px 0 0;
+    background: url(../images/marker.jpg) no-repeat 0 5px;
+}
+
+.store-locator-page-map-container {
+    height: 400px;
+}
+
+.store-locator-page-markers-list {
+    margin-bottom: 20px;
+}
+.store-locator-page-markers-list,
+.store-locator-page-markers-list ul{
+    max-height:400px;
+}
+
+.store-locator-page-markers-list ul {
+    list-style: none;
+    overflow:auto;
+}
+.store-locator-page-markers-list li {
+    margin-bottom: 0;
+}
+
+.store-locator-page-markers-list .markers-listing-item {
+    border: 1px solid #ccc;
+    border-bottom: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.store-locator-page-markers-list .markers-listing-item.last {
+    border-bottom: 1px solid #ccc;
+}
+
+.store-locator-page-markers-list .markers-listing-item .title {
+    display: inline-block;
+    padding: 10px 0 0 0;
+}
+
+.store-locator-page-markers-list .markers-listing-item .comment {
+    font-style: italic;
+    color: #777;
+    max-width: 62%;
+}
+
+@media (min-width: 768px) {
+    .store-locator-page-markers-list {
+        float: left;
+        clear: left;
+        margin-right: 20px;
+        max-width: 30%;
+    }
 }
