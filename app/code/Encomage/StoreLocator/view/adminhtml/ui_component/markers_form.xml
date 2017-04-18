@@ -19,10 +19,10 @@
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
         <item name="buttons" xsi:type="array">
-            <item name="back" xsi:type="string">Encomage\StoreLocator\Block\Adminhtml\Page\Edit\BackButton</item>
-            <item name="delete" xsi:type="string">Encomage\StoreLocator\Block\Adminhtml\Page\Edit\DeleteButton</item>
-            <item name="save" xsi:type="string">Encomage\StoreLocator\Block\Adminhtml\Page\Edit\SaveButton</item>
-            <item name="save_and_continue" xsi:type="string">Encomage\StoreLocator\Block\Adminhtml\Page\Edit\SaveAndContinueButton</item>
+            <item name="back" xsi:type="string">Encomage\StoreLocator\Block\Adminhtml\Markers\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">Encomage\StoreLocator\Block\Adminhtml\Markers\Edit\DeleteButton</item>
+            <item name="save" xsi:type="string">Encomage\StoreLocator\Block\Adminhtml\Markers\Edit\SaveButton</item>
+            <item name="save_and_continue" xsi:type="string">Encomage\StoreLocator\Block\Adminhtml\Markers\Edit\SaveAndContinueButton</item>
         </item>
     </argument>
     <dataSource name="page_form_data_source">

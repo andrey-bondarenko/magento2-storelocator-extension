@@ -1,0 +1,19 @@
+<div class="admin__field _required">
+    <div data-bind="scope: 'test'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "test": {
+                            "component": "Encomage_StoreLocator/js/components/form/google_address_search",
+                            "template" : "Encomage_StoreLocator/form/element/google_address_search "
+                        }
+                    }
+                }
+            }
+        }
+</script>
+</div>

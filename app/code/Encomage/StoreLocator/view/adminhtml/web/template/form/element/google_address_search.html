@@ -6,7 +6,10 @@
             placeholder: placeholderLat,
             'aria-describedby': noticeId,
     }"/>
-<input class="admin__field admin__control-text _required" type="text" id="google-address-lng"
+<!-- ko if: error -->
+<label class="admin__field-error" data-bind="attr: {for: uid}, text: error"></label>
+<!-- /ko -->
+<input class="admin__field admin__control-text" type="text" id="google-address-lng"
        data-bind="
         value: valueLng,
         attr: {
@@ -14,12 +17,14 @@
             placeholder: placeholderLng,
             'aria-describedby': noticeId,
     }"/>
-<button type="button" class="admin__field action-secondary google-address-show primary"
-        click="clickShowMarkerOnMap"
-        disable="disabled">
+<!-- ko if: error -->
+<label class="admin__field-error" data-bind="attr: {for: uid}, text: error"></label>
+<!-- /ko -->
+<button type="button" class="admin__field action-secondary google-address-show primary" click="clickShowMarkerOnMap">
     <span text="title">
     </span>
 </button>
+
 <input class="admin__field admin__control-text" type="text" id="google-address-search"
        data-bind="
         value: valueSearch,
