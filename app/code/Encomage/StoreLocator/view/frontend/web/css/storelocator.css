@@ -71,6 +71,7 @@
 .store-locator-page-markers-list ul {
     list-style: none;
     overflow:auto;
+    padding-left: 0;
 }
 .store-locator-page-markers-list li {
     margin-bottom: 0;
@@ -98,7 +99,7 @@
     max-width: 62%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 989px) {
     .store-locator-page-markers-list {
         float: left;
         clear: left;

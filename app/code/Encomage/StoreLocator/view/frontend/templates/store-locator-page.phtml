@@ -7,7 +7,7 @@
 
 /** @var \Encomage\StoreLocator\Block\StoreLocationPage $block */
 $markers = $block->getCollection();
-$size = (int)$markers->getSize();
+$size = $markers->getSize();
 ?>
 <?php if ($size): ?>
     <div class="store-locator-page-markers-list">
