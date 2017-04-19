@@ -44,7 +44,7 @@
     echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode(
         [
             '*' => [
-                'Encomage_StoreLocator/js/locator' => $block->getParams()
+                'Encomage_StoreLocator/js/locator' => $block->getJsParams()
             ],
         ]
     );

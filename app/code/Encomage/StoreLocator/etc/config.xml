@@ -8,14 +8,9 @@
                 <show_on_column>left</show_on_column>
                 <title_on_sidebar_map>Find Our Stores On Map</title_on_sidebar_map>
                 <show_on_sidebar_map>0</show_on_sidebar_map>
-            </front_options>
-            <marker_options>
-                <default_lat>47.840676</default_lat>
-                <default_lng>35.136089</default_lng>
                 <zoom_for_default_map>8</zoom_for_default_map>
                 <zoom_for_stores_marker>16</zoom_for_stores_marker>
-                <markers_list_title>Markers List</markers_list_title>
-            </marker_options>
+            </front_options>
         </store_locator>
     </default>
 </config>

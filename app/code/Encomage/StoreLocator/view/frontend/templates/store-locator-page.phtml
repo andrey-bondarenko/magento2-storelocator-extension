@@ -7,7 +7,7 @@
 
 /** @var \Encomage\StoreLocator\Block\StoreLocationPage $block */
 $markers = $block->getCollection();
-$size = (int)$markers->getSize();
+$size = $markers->getSize();
 ?>
 <?php if ($size): ?>
     <div class="store-locator-page-markers-list">
@@ -30,17 +30,22 @@ $size = (int)$markers->getSize();
             <?php endforeach; ?>
         </ul>
     </div>
-<?php endif; ?>
-<div class="store-locator-page-map-container" id="<?php echo $block->escapeHtml($block->getMapContainerId()); ?>"></div>
-<script type="text/x-magento-init">
+    <div class="store-locator-page-map-container"
+         id="<?php echo $block->escapeHtml($block->getMapContainerId()); ?>"></div>
+    <script type="text/x-magento-init">
   <?php
-    /* @escapeNotVerified */
-    echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode(
-        [
-            '*' => [
-                'Encomage_StoreLocator/js/locator' => $block->getParams()
-            ],
-        ]
-    );
-    ?>
-</script>
+        /* @escapeNotVerified */
+        echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode(
+            [
+                '*' => [
+                    'Encomage_StoreLocator/js/locator' => $block->getJsParams()
+                ],
+            ]
+        );
+        ?>
+    </script>
+<?php else: ?>
+    <div class="empty">
+        <?php echo $block->escapeHtml($block->getNoMarkersLabel()) ?>
+    </div>
+<?php endif; ?>

@@ -49,7 +49,7 @@ class StoreLocator extends MapAbstract implements BlockInterface
     /**
      * @return array
      */
-    public function getParams()
+    public function getJsParams()
     {
         $params = parent::getParams();
         if ($this->hasData('center_marker')) {
