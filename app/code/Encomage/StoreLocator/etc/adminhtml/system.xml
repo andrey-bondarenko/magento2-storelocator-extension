@@ -26,12 +26,12 @@
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Google Maps API version</label>
                 </field>
-                <field id="zoom_for_default_map" translate="label" type="text" sortOrder="30"
+                <field id="zoom_for_default_map" translate="label" type="text" sortOrder="40"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Zoom For Default Map</label>
                     <validate>validate-digits-range digits-range-0-22</validate>
                 </field>
-                <field id="zoom_for_stores_marker" translate="label" type="text" sortOrder="40"
+                <field id="zoom_for_stores_marker" translate="label" type="text" sortOrder="50"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Zoom For Stores Marker On marker</label>
                     <validate>validate-digits-range digits-range-0-22</validate>
