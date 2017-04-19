@@ -29,4 +29,12 @@ class StoreLocationPage extends \Encomage\StoreLocator\Block\MapAbstract
         }
         return $this->_collection;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getNoMarkersLabel()
+    {
+        return __('There are no added markers.');
+    }
 }

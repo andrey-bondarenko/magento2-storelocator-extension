@@ -12,10 +12,10 @@
             <resource>Encomage_StoreLocator::store_locator_config</resource>
             <group id="front_options" translate="label" type="text" sortOrder="10"
                    showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Frontend Options</label>
+                <label>Store List Options</label>
                 <field id="is_active" translate="label" type="select" sortOrder="10"
                        showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enabled On Frontend</label>
+                    <label>Enable Store List Page</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="api_key" translate="label" type="text" sortOrder="20"
@@ -26,18 +26,6 @@
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Google Maps API version</label>
                 </field>
-            </group>
-            <group id="marker_options" translate="label" type="text" sortOrder="20"
-                   showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Map Settings</label>
-                <field id="default_lat" translate="label" type="text" sortOrder="10"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Default Latitude</label>
-                </field>
-                <field id="default_lng" translate="label" type="text" sortOrder="20"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Default Longitude</label>
-                </field>
                 <field id="zoom_for_default_map" translate="label" type="text" sortOrder="30"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Zoom For Default Map</label>
@@ -47,10 +35,6 @@
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Zoom For Stores Marker On marker</label>
                     <validate>validate-digits-range digits-range-0-22</validate>
-                </field>
-                <field id="markers_list_title" translate="label" type="text" sortOrder="50"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Markers List Title</label>
                 </field>
             </group>
         </section>

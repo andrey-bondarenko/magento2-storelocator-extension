@@ -21,6 +21,11 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
     protected $_markersCollection;
 
     /**
+     * @var \Encomage\StoreLocator\Model\Marker
+     */
+    protected $_firstCollectionMarker;
+
+    /**
      * @var \Encomage\StoreLocator\Helper\Config
      */
     protected $_configHelper;
@@ -85,16 +90,12 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
     /**
      * @return array
      */
-    public function getParams()
+    public function getJsParams()
     {
         return [
             'selector' => $this->getMapContainerId(),
-            'defaultLat' => $this->_scopeConfig->getValue(
-                \Encomage\StoreLocator\Helper\Config::XML_PATH_DEFAULT_COORDINATES_LAT_PATH
-            ),
-            'defaultLng' => $this->_scopeConfig->getValue(
-                \Encomage\StoreLocator\Helper\Config::XML_PATH_DEFAULT_COORDINATES_LNG_PATH
-            ),
+            'defaultLat' => (float)$this->_getFirstCollectionMarker()->getLatitude(),
+            'defaultLng' => (float)$this->_getFirstCollectionMarker()->getLongitude(),
             'defaultZoom' => $this->_scopeConfig->getValue(
                 \Encomage\StoreLocator\Helper\Config::XML_PATH_DEFAULT_ZOOM_PATH
             ),
@@ -103,6 +104,17 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
             ),
             'markers' => $this->_getStoreMarkers()
         ];
+    }
+
+    /**
+     * @return \Encomage\StoreLocator\Model\Marker
+     */
+    protected function _getFirstCollectionMarker()
+    {
+        if (!$this->_firstCollectionMarker) {
+            $this->_firstCollectionMarker = $this->getCollection()->getFirstItem();
+        }
+        return $this->_firstCollectionMarker;
     }
 
     /**
