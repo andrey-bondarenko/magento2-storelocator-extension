@@ -126,7 +126,7 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
             if (!$widget) {
                 return [];
             }
-            return $widget->getStoreIds();
+            $this->_storeIds = $widget->getStoreIds();
         }
         if (in_array(self::ALL_STORE_VIEWS, $this->_storeIds)) {
             return $this->_systemStore->getStoreCollection();
@@ -135,10 +135,10 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
     }
 
     /**
-     * @param null $markerId
-     * @return null
+     * @param null $storeId
+     * @return array|mixed|null
      */
-    protected function _getMarkersByStore($markerId = null)
+    protected function _getMarkersByStore($storeId = null)
     {
         if (!$this->_markersByStore) {
             $widgetMarkers = ($this->_checkChosenInWidget) ? $this->_getWidgetMarkers() : [];
@@ -156,8 +156,8 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
                 }
             }
         }
-        if ($markerId) {
-            return isset($this->_markersByStore[$markerId]) ? $this->_markersByStore[$markerId] : null;
+        if ($storeId) {
+            return isset($this->_markersByStore[$storeId]) ? $this->_markersByStore[$storeId] : null;
         }
         return $this->_markersByStore;
     }
