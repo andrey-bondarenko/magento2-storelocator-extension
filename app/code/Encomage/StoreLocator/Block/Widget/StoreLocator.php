@@ -24,6 +24,11 @@ class StoreLocator extends MapAbstract implements BlockInterface
     protected $_collection;
 
     /**
+     * @var string
+     */
+    protected $_widgetMapContainerUniqueId;
+
+    /**
      * Class construct
      */
     protected function _construct()
@@ -148,5 +153,16 @@ class StoreLocator extends MapAbstract implements BlockInterface
     protected function _isPlacedMainLocatorBlock()
     {
         return $this->getLayout()->isBlock('store.locator.page');
+    }
+
+    /**
+     * @return string
+     */
+    public function getMapContainerId()
+    {
+        if (!$this->_widgetMapContainerUniqueId) {
+            $this->_widgetMapContainerUniqueId = parent::getMapContainerId() . uniqid();
+        }
+        return $this->_widgetMapContainerUniqueId;
     }
 }
