@@ -19,18 +19,20 @@
                 class="store-locator-marker-listing"
                 <?php echo $block->getListingBlockAttributes(); ?>>
                 <?php if ($block->isShowMarkersList()): ?>
-                    <?php $markersCollection = $block->getCollection(); ?>
-                    <?php if ($markersCollection->getSize()): ?>
-                        <?php foreach ($markersCollection as $marker): ?>
-                            <div class="js-show-marker markers-listing-item"
-                                 data-marker-id="<?php echo (int)$marker->getId() ?>">
-                                <div class="store-locator-widget title">
-                                    <?php echo $block->escapeHtml($marker->getName()); ?>
-                                </div>
-                                <div class="marker-icon"></div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                    <ul>
+                        <?php $markersCollection = $block->getCollection(); ?>
+                        <?php if ($markersCollection->getSize()): ?>
+                            <?php foreach ($markersCollection as $marker): ?>
+                                <li class="js-show-marker markers-listing-item"
+                                    data-marker-id="<?php echo (int)$marker->getId() ?>">
+                                    <div class="store-locator-widget title">
+                                        <?php echo $block->escapeHtml($marker->getName()); ?>
+                                    </div>
+                                    <div class="marker-icon"></div>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </ul>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
@@ -49,4 +51,6 @@
         ]
     );
     ?>
+
+
 </script>
