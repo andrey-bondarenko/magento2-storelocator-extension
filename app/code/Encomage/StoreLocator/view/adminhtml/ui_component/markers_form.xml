@@ -123,7 +123,7 @@
                     <item name="source" xsi:type="string">coordinates</item>
                     <item name="dataScope" xsi:type="string">coordinates</item>
                     <item name="title" xsi:type="string" translate="true">Show on the map</item>
-                    <item name="placeholder" xsi:type="string" translate="true">Start to type for....</item>
+                    <item name="placeholder" xsi:type="string" translate="true">Start typing....</item>
                     <item name="placeholderLng" xsi:type="string" translate="true">Longitude...</item>
                     <item name="placeholderLat" xsi:type="string" translate="true">Latitude...</item>
                     <item name="searchNotice" xsi:type="string" translate="true">Start typing to search new location</item>
