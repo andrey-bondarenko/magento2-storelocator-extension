@@ -61,7 +61,7 @@ class Topmenu
             $node = $this->_nodeFactory->create(
                 [
                     'data' => [
-                        'name' => __('Store Locator'),
+                        'name' => __('Store List'),
                         'id' => 'store-locator',
                         'url' => $this->_urlBuilder->getUrl('storelocator')
                     ],

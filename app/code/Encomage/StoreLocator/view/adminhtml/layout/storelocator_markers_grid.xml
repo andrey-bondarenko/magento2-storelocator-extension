@@ -8,7 +8,7 @@
         </referenceBlock>
         <referenceBlock name="page.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">Markers Listing</argument>
+                <argument translate="true" name="title" xsi:type="string">Store List</argument>
             </action>
         </referenceBlock>
         <referenceContainer name="content">

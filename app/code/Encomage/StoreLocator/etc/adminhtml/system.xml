@@ -33,7 +33,7 @@
                 </field>
                 <field id="zoom_for_stores_marker" translate="label" type="text" sortOrder="50"
                        showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Zoom For Stores Marker On marker</label>
+                    <label>Zoom For Stores Marker On Map</label>
                     <validate>validate-digits-range digits-range-0-22</validate>
                 </field>
             </group>
