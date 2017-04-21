@@ -107,6 +107,6 @@
         float: left;
         clear: left;
         margin-right: 20px;
-        max-width: 30%;
+        width: 30%;
     }
 }
