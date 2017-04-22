@@ -23,6 +23,11 @@ class MassDelete extends \Magento\Backend\App\Action
     protected $_markerObject;
 
     /**
+     * @var \Encomage\StoreLocator\Logger\Logger
+     */
+    protected $_logger;
+
+    /**
      * MassDelete constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
@@ -31,12 +36,14 @@ class MassDelete extends \Magento\Backend\App\Action
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
+        \Encomage\StoreLocator\Model\MarkerFactory $markerFactory,
+        \Encomage\StoreLocator\Logger\Logger $logger
     )
     {
         parent::__construct($context);
         $this->_resultPageFactory = $resultPageFactory;
         $this->_markerObject = $markerFactory->create();
+        $this->_logger = $logger;
     }
 
     /**
@@ -54,6 +61,7 @@ class MassDelete extends \Magento\Backend\App\Action
                 $this->messageManager->addSuccessMessage(__('Store marker\'s was deleted'));
             } catch (\Exception $e) {
                 $this->messageManager->addErrorMessage(__('Something went wrong.'));
+                $this->_logger->logException($e);
             }
         }
         return $resultRedirect->setPath('*/*/grid');

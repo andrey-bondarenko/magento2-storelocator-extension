@@ -23,20 +23,29 @@ class Delete extends \Magento\Backend\App\Action
     protected $_markerObject;
 
     /**
+     * @var \Encomage\StoreLocator\Helper\Config
+     */
+    protected $_logger;
+
+    /**
      * Delete constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      * @param \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
+     * @param \Encomage\StoreLocator\Helper\Config $config
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
+        \Encomage\StoreLocator\Model\MarkerFactory $markerFactory,
+        \Encomage\StoreLocator\Helper\Config $config,
+        \Encomage\StoreLocator\Logger\Logger $logger
     )
     {
         parent::__construct($context);
         $this->_resultPageFactory = $resultPageFactory;
         $this->_markerObject = $markerFactory->create();
+        $this->_logger = $logger;
     }
 
     /**
@@ -52,7 +61,8 @@ class Delete extends \Magento\Backend\App\Action
                 $this->_markerObject->setEntityId($markerId)->deleteMarker();
                 $this->messageManager->addSuccessMessage(__('Store marker has been deleted'));
             } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage($e->getMessage(), __('Something went wrong.'));
+                $this->messageManager->addErrorMessage(__('Something went wrong.'));
+                $this->_logger->logException($e);
             }
         }
         return $resultRedirect->setPath('*/*/grid');
