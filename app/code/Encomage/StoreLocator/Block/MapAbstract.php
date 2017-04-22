@@ -136,7 +136,7 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
      */
     protected function _addGoogleMapApiScript()
     {
-        if (!$this->getLayout()->isBlock('google.maps.api')) {
+        if (!$this->getLayout()->isBlock('google.maps.api') && $this->_isSetGoogleApiKey()) {
             $this->getLayout()->addBlock(
                 'Encomage\StoreLocator\Block\Google\MapApi',
                 'google.maps.api',
@@ -156,5 +156,25 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
             $this->_assetRepository->createAsset($this->_cssIdentifier)
         );
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function _isSetGoogleApiKey()
+    {
+        return $this->_scopeConfig->isSetFlag(\Encomage\StoreLocator\Helper\Config::XML_PATH_GOOGLE_API_KEY_PATH);
+    }
+
+    /**
+     * Check Google API key before render
+     *
+     * @return string
+     */
+    protected function _toHtml()
+    {
+        return (!$this->_isSetGoogleApiKey())
+            ? __('You must add your Google API KEY in \' System Config -> Encomage -> Store Locator -> Google Maps API Key\'')
+            : parent::_toHtml();
     }
 }

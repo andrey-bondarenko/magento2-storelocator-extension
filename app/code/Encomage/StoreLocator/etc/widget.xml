@@ -26,13 +26,13 @@
                     </option>
                 </options>
             </parameter>
-            <parameter xsi:type="text" name="widget_width" required="false" visible="true">
+            <parameter xsi:type="text" name="widget_width" required="true" visible="true">
                 <label translate="true">Widget Width</label>
-                <description translate="true">Example: 150px</description>
+                <description translate="true">Example: 150px|150%</description>
             </parameter>
-            <parameter xsi:type="text" name="widget_height" required="false" visible="true">
+            <parameter xsi:type="text" name="widget_height" required="true" visible="true">
                 <label translate="true">Widget Height</label>
-                <description translate="true">Example: 150px</description>
+                <description translate="true">Example: 150px|150%</description>
             </parameter>
         </parameters>
     </widget>

@@ -77,23 +77,13 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
                 'like' => '%' . (int)$storeId . '%'
             ]
         ];
-        if ($storeId != 0) {
+        if ($storeId != \Encomage\StoreLocator\Model\Config\Source\Markers::ALL_STORE_VIEWS) {
             $fields[] = 'store_id';
             $conditions[] = [
-                'like' => '%0%'
+                'like' => '%' . \Encomage\StoreLocator\Model\Config\Source\Markers::ALL_STORE_VIEWS . '%'
             ];
         }
         $this->addFieldToFilter($fields, $conditions);
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function getRandomMarkers()
-    {
-        $this->getDataByStore($this->_storeManager->getStore()->getId());
-        $this->getSelect()->order(new \Zend_Db_Expr('RAND()'));
         return $this;
     }
 
