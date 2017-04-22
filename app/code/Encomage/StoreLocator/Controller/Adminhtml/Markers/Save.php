@@ -25,6 +25,11 @@ class Save extends \Magento\Backend\App\Action
     protected $_markerObject;
 
     /**
+     * @var \Encomage\StoreLocator\Logger\Logger
+     */
+    protected $_logger;
+
+    /**
      * Save constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
@@ -33,12 +38,14 @@ class Save extends \Magento\Backend\App\Action
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
+        \Encomage\StoreLocator\Model\MarkerFactory $markerFactory,
+        \Encomage\StoreLocator\Logger\Logger $logger
     )
     {
         parent::__construct($context);
         $this->_resultPageFactory = $resultPageFactory;
         $this->_markerObject = $markerFactory->create();
+        $this->_logger = $logger;
     }
 
     /**
@@ -61,32 +68,33 @@ class Save extends \Magento\Backend\App\Action
                 $requestParams['longitude'] = $coordinates[1];
             }
         }
-        $errorInRequestData = $this->_markerObject->validateData($requestParams);
-        if (!empty($errorInRequestData)) {
-            foreach ($errorInRequestData as $item) {
-                $this->messageManager->addErrorMessage($item);
-            }
-            return $resultRedirect->setPath('*/*/grid');
-        }
-        if ($entityId) {
-            $this->_markerObject->loadMarkerById($entityId);
-        }
-        $this->_markerObject
-            ->addData(
-                [
-                    'name'      => $requestParams['name'],
-                    'latitude'  => $requestParams['latitude'],
-                    'longitude' => $requestParams['longitude'],
-                    'store_id'  => implode(',', $requestParams['store_id']),
-                    'comment'   => $this->getRequest()->getParam('comment', null)
-                ]
-            );
         try {
+            $errorInRequestData = $this->_markerObject->validateData($requestParams);
+            if (!empty($errorInRequestData)) {
+                foreach ($errorInRequestData as $item) {
+                    $this->messageManager->addErrorMessage($item);
+                }
+                return $resultRedirect->setPath('*/*/grid');
+            }
+            if ($entityId) {
+                $this->_markerObject->loadMarkerById($entityId);
+            }
+            $this->_markerObject
+                ->addData(
+                    [
+                        'name' => $requestParams['name'],
+                        'latitude' => $requestParams['latitude'],
+                        'longitude' => $requestParams['longitude'],
+                        'store_id' => implode(',', $requestParams['store_id']),
+                        'comment' => $this->getRequest()->getParam('comment', null)
+                    ]
+                );
             $this->_markerObject->saveMarker();
             $this->messageManager->addSuccessMessage(__('Marker has been saved'));
             $responseParams['id'] = (int)$this->_markerObject->getId();
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage($e->getMessage(), __('Something went wrong while saving the marker.'));
+            $this->messageManager->addErrorMessage(__('Something went wrong while saving the marker.'));
+            $this->_logger->logException($e);
         }
         return ($backAction)
             ? $resultRedirect->setPath('*/*/' . $backAction, $responseParams)

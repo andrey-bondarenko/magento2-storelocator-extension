@@ -56,6 +56,7 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Encomage\StoreLocator\Model\ResourceModel\Marker\CollectionFactory $markersCollectionFactory,
         \Encomage\StoreLocator\Helper\Config $config,
+        \Encomage\StoreLocator\Logger\Logger $logger,
         \Magento\Framework\View\Asset\Repository $assetRepository,
         \Magento\Framework\View\Asset\GroupedCollection $assetCollection,
         array $data = []
@@ -66,6 +67,7 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         $this->_markersCollection = $markersCollectionFactory->create();
         $this->_assetRepository = $assetRepository;
         $this->_assetCollection = $assetCollection;
+        $this->_logger = $logger;
         $this->_addGoogleMapApiScript()
             ->_addStyleAsset();
     }
@@ -173,8 +175,12 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
      */
     protected function _toHtml()
     {
-        return (!$this->_isSetGoogleApiKey())
-            ? __('You must add your Google API KEY in \' System Config -> Encomage -> Store Locator -> Google Maps API Key\'')
-            : parent::_toHtml();
+        if (!$this->_isSetGoogleApiKey()) {
+            $this->_logger->err(
+                __('You must add your Google API KEY in \' System Config -> Encomage -> Store Locator -> Google Maps API Key\'')
+            );
+            return '';
+        }
+        return parent::_toHtml();
     }
 }

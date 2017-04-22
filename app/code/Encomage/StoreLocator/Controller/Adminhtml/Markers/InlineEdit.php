@@ -24,6 +24,11 @@ class InlineEdit extends \Magento\Backend\App\Action
     protected $_jsonFactory;
 
     /**
+     * @var \Encomage\StoreLocator\Logger\Logger
+     */
+    protected $_logger;
+    
+    /**
      * InlineEdit constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
@@ -32,12 +37,14 @@ class InlineEdit extends \Magento\Backend\App\Action
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Encomage\StoreLocator\Model\MarkerFactory $markerFactory,
-        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
+        \Encomage\StoreLocator\Logger\Logger $logger
     )
     {
         parent::__construct($context);
         $this->_markerObject = $markerFactory->create();
         $this->_jsonFactory = $jsonFactory;
+        $this->_logger = $logger;
     }
 
     /**
@@ -77,6 +84,7 @@ class InlineEdit extends \Magento\Backend\App\Action
                                 $this->_markerObject, __($e->getMessage())
                             );
                             $error = true;
+                            $this->_logger->logException($e);
                         }
                     }
                 }
