@@ -31,9 +31,9 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
     protected $_coreRegistry;
 
     /**
-     * @var
+     * @var array
      */
-    protected $_storeIds;
+    protected $_storeIds = [];
 
     /**
      * @var bool
@@ -121,12 +121,11 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
      */
     protected function _getStoresIds()
     {
-        if (!$this->_storeIds) {
+        if (empty($this->_storeIds)) {
             $widget = $this->_getCurrentWidget();
-            if (!$widget) {
-                return [];
+            if ($widget && $widget->getStoreIds()) {
+                $this->storeIds = $widget->getStoreIds();
             }
-            $this->_storeIds = $widget->getStoreIds();
         }
         if (in_array(self::ALL_STORE_VIEWS, $this->_storeIds)) {
             return $this->_systemStore->getStoreCollection();

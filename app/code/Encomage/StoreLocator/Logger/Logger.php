@@ -19,7 +19,7 @@ class Logger extends \Monolog\Logger
      */
     public function logException(\Exception $e)
     {
-        $this->err($e->getMessage() . ' ' . $e->getTraceAsString());
+        $this->critical($e->getMessage() . ' ' . $e->getTraceAsString());
         return $this;
     }
 }

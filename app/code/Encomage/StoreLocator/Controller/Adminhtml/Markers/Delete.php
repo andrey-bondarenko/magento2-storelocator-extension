@@ -33,6 +33,7 @@ class Delete extends \Magento\Backend\App\Action
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      * @param \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
      * @param \Encomage\StoreLocator\Helper\Config $config
+     * @param \Encomage\StoreLocator\Logger\Logger $logger
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
@@ -53,7 +54,7 @@ class Delete extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $markerId = (int)$this->getRequest()->getParam('id');
+        $markerId = (int)$this->getRequest()->getParam('id', 0);
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($markerId) {

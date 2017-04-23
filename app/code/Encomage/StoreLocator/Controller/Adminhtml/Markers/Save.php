@@ -34,6 +34,7 @@ class Save extends \Magento\Backend\App\Action
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      * @param \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
+     * @param \Encomage\StoreLocator\Logger\Logger $logger
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
