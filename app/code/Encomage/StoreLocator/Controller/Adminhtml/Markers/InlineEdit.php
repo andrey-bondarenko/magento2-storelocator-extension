@@ -27,12 +27,13 @@ class InlineEdit extends \Magento\Backend\App\Action
      * @var \Encomage\StoreLocator\Logger\Logger
      */
     protected $_logger;
-    
+
     /**
      * InlineEdit constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Encomage\StoreLocator\Model\MarkerFactory $markerFactory
      * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+     * @param \Encomage\StoreLocator\Logger\Logger $logger
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
