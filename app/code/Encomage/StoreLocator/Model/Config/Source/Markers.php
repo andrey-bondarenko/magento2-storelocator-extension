@@ -124,7 +124,7 @@ class Markers implements \Magento\Framework\Option\ArrayInterface
         if (empty($this->_storeIds)) {
             $widget = $this->_getCurrentWidget();
             if ($widget && $widget->getStoreIds()) {
-                $this->storeIds = $widget->getStoreIds();
+                $this->_storeIds = $widget->getStoreIds();
             }
         }
         if (in_array(self::ALL_STORE_VIEWS, $this->_storeIds)) {
