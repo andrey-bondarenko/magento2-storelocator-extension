@@ -50,6 +50,8 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Encomage\StoreLocator\Model\ResourceModel\Marker\CollectionFactory $markersCollectionFactory
      * @param \Encomage\StoreLocator\Helper\Config $config
+     * @param \Encomage\StoreLocator\Logger\Logger $logger
+     * @param \Magento\Framework\View\Asset\GroupedCollection $assetCollection
      * @param array $data
      */
     public function __construct(
@@ -57,7 +59,6 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         \Encomage\StoreLocator\Model\ResourceModel\Marker\CollectionFactory $markersCollectionFactory,
         \Encomage\StoreLocator\Helper\Config $config,
         \Encomage\StoreLocator\Logger\Logger $logger,
-        \Magento\Framework\View\Asset\Repository $assetRepository,
         \Magento\Framework\View\Asset\GroupedCollection $assetCollection,
         array $data = []
     )
@@ -65,7 +66,7 @@ abstract class MapAbstract extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
         $this->_configHelper = $config;
         $this->_markersCollection = $markersCollectionFactory->create();
-        $this->_assetRepository = $assetRepository;
+        $this->_assetRepository = $context->getAssetRepository();
         $this->_assetCollection = $assetCollection;
         $this->_logger = $logger;
         $this->_addGoogleMapApiScript()
